@@ -1,0 +1,5 @@
+.button:hover {
+    -fx-text-fill: #a53eba;
+    -fx-scale-x: 1.05; /* Slight zoom effect */
+    -fx-scale-y: 1.05;
+}
