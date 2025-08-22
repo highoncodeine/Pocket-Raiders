@@ -2,7 +2,7 @@ package com.pocketraiders.model;
 
 public class RareRaider extends Raider{
 
-    public RareRaider(int id, String name) {
-        super(id, name, Rarity.RARE);
+    public RareRaider(int id, String name, String spritePath) {
+        super(id, name, Rarity.RARE, spritePath);
     }
 }

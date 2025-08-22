@@ -4,12 +4,14 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class Pod {
-    private String name;
-    private int lumenCost;
-    private ArrayList<CommonRaider> commonRaiders;
-    private ArrayList<RareRaider> rareRaiders;
-    private ArrayList<LegendaryRaider> legendaryRaiders;
-    private ArrayList<MythicalRaider> mythicalRaiders;
+    protected String name;
+    protected String description;
+    protected int lumenCost;
+    protected ArrayList<Raider> allRaiders;
+    protected ArrayList<CommonRaider> commonRaiders;
+    protected ArrayList<RareRaider> rareRaiders;
+    protected ArrayList<LegendaryRaider> legendaryRaiders;
+    protected ArrayList<MythicalRaider> mythicalRaiders;
 
     private static Random random = new Random();
 
@@ -25,8 +27,30 @@ public class Pod {
         sortRaiders(availableRaiders);
     }
 
+    public Pod(String name, int lumenCost) {
+        this.name = name;
+        this.lumenCost = lumenCost;
+        this.allRaiders = new ArrayList<>();
+        this.commonRaiders = new ArrayList<>();
+        this.rareRaiders = new ArrayList<>();
+        this.legendaryRaiders = new ArrayList<>();
+        this.mythicalRaiders = new ArrayList<>();
+    }
+
     public int getLumenCost() {
         return this.lumenCost;
+    }
+
+    public String getName() {
+        return this.name;
+    }
+
+    public String getDescription() {
+        return this.description;
+    }
+
+    public ArrayList<Raider> getAllRaiders() {
+        return this.allRaiders;
     }
 
     public Raider selectRandomRaider() {
@@ -49,20 +73,24 @@ public class Pod {
         }
     }
 
-    private void sortRaiders(ArrayList<Raider> availableRaiders) {
+    protected void sortRaiders(ArrayList<Raider> availableRaiders) {
         for(Raider availableRaider: availableRaiders) {
             switch(availableRaider.getRarity()) {
                 case Rarity.COMMON:
                     commonRaiders.add((CommonRaider) availableRaider);
+                    allRaiders.add(availableRaider);
                     break;
                 case Rarity.RARE:
                     rareRaiders.add((RareRaider) availableRaider);
+                    allRaiders.add(availableRaider);
                     break;
                 case Rarity.LEGENDARY:
                     legendaryRaiders.add((LegendaryRaider) availableRaider);
+                    allRaiders.add(availableRaider);
                     break;
                 case Rarity.MYTHICAL:
                     mythicalRaiders.add((MythicalRaider) availableRaider);
+                    allRaiders.add(availableRaider);
                     break;
             }
         }

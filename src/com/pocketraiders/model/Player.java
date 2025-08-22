@@ -17,6 +17,18 @@ public class Player {
         this.lumens = lumens;
     }
 
+    public int getId() {
+        return this.id;
+    }
+
+    public String getUsername() {
+        return this.username;
+    }
+
+    public String getPassword() {
+        return this.password;
+    }
+
     public int getLumens() {
         return this.lumens;
     }

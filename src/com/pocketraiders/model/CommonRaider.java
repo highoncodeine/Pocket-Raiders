@@ -2,7 +2,7 @@ package com.pocketraiders.model;
 
 public class CommonRaider extends Raider{
 
-    public CommonRaider(int id, String name) {
-        super(id, name, Rarity.COMMON);
+    public CommonRaider(int id, String name, String spritePath) {
+        super(id, name, Rarity.COMMON, spritePath);
     }
 }
