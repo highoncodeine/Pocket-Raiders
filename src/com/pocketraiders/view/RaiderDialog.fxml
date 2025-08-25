@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="298.0" prefWidth="529.0" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pocketraiders.controller.RaiderDialogController">
+   <children>
+      <ImageView fx:id="raiderBackgroundImg" fitHeight="379.0" fitWidth="636.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../resources/bg-images/novapodmenu.png" />
+         </image>
+      </ImageView>
+      <Rectangle fx:id="rarityRectangle" arcHeight="30.0" arcWidth="30.0" fill="#025bff" height="219.0" layoutX="45.0" layoutY="49.0" opacity="0.34" stroke="BLACK" strokeMiterLimit="0.0" strokeType="INSIDE" strokeWidth="0.0" width="182.0" />
+      <Rectangle height="219.0" layoutX="251.0" layoutY="48.0" opacity="0.34" stroke="BLACK" strokeType="INSIDE" width="353.0" />
+      <ImageView fx:id="raiderSpriteImg" fitHeight="254.0" fitWidth="251.0" layoutX="11.0" layoutY="31.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../resources/raider-images/radiar t..png" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </ImageView>
+      <Label fx:id="raiderNameLabel" layoutX="270.0" layoutY="45.0" prefHeight="79.0" prefWidth="316.0" text="Aetherion Prime" textFill="WHITE">
+         <font>
+            <Font name="Segoe UI Black" size="34.0" />
+         </font>
+      </Label>
+      <Label fx:id="raiderLevelLabel" layoutX="270.0" layoutY="102.0" prefHeight="3.0" prefWidth="80.0" text="Level: 10" textFill="WHITE">
+         <font>
+            <Font name="Segoe UI Semibold" size="17.0" />
+         </font>
+      </Label>
+      <ProgressBar fx:id="raiderXpBar" layoutX="110.0" layoutY="293.0" prefHeight="18.0" prefWidth="416.0" progress="0.0" />
+      <Label alignment="CENTER" layoutX="247.0" layoutY="316.0" prefHeight="12.0" prefWidth="142.0" text="XP TO NEXT LEVEL" textFill="WHITE">
+         <font>
+            <Font name="Segoe UI Semilight" size="11.0" />
+         </font>
+      </Label>
+      <Label layoutX="527.0" layoutY="33.0" prefHeight="16.0" prefWidth="46.0" text="COPIES" textFill="WHITE">
+         <font>
+            <Font name="Segoe UI Semibold" size="11.0" />
+         </font>
+      </Label>
+      <Circle fill="RED" layoutX="591.0" layoutY="46.0" radius="19.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="0.0" />
+      <Label fx:id="raiderCopiesLabel" alignment="CENTER" layoutX="567.0" layoutY="32.0" prefHeight="24.0" prefWidth="46.0" text="200" textFill="WHITE">
+         <font>
+            <Font name="Segoe UI Semilight" size="17.0" />
+         </font>
+      </Label>
+      <Label fx:id="raiderMinLabel" layoutX="270.0" layoutY="143.0" prefHeight="26.0" prefWidth="273.0" text="MIN ATTACK DAMAGE: 1" textFill="WHITE">
+         <font>
+            <Font name="Segoe UI Semilight" size="17.0" />
+         </font>
+      </Label>
+      <Label fx:id="raiderMaxLabel" layoutX="270.0" layoutY="174.0" prefHeight="26.0" prefWidth="273.0" text="MAX ATTACK DAMAGE: 2" textFill="WHITE">
+         <font>
+            <Font name="Segoe UI Semilight" size="17.0" />
+         </font>
+      </Label>
+      <Label fx:id="raiderSpecialAbilityLabel" layoutX="270.0" layoutY="205.0" prefHeight="26.0" prefWidth="273.0" text="SPECIAL ABILITY: NONE" textFill="WHITE">
+         <font>
+            <Font name="Segoe UI Semilight" size="17.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER" layoutX="11.0" layoutY="21.0" prefHeight="26.0" prefWidth="251.0" text="CLICK ON THE SPRITE TO LEVEL UP THIS RAIDER" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font name="Segoe UI Light" size="11.0" />
+         </font>
+      </Label>
+      <Label fx:id="raiderXpToNextLevelLabel" alignment="CENTER" layoutX="247.0" layoutY="329.0" prefHeight="12.0" prefWidth="142.0" text="1/100" textFill="WHITE">
+         <font>
+            <Font name="Segoe UI Black" size="11.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

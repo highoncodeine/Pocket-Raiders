@@ -10,13 +10,13 @@ import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
 import javafx.event.ActionEvent;
+
 import java.io.IOException;
 
 
 public class MainMenuController {
     private Player player;
     private Stage stage;
-    private Scene scene;
 
     @FXML private Label playerInfoLabel;
 
@@ -31,6 +31,18 @@ public class MainMenuController {
         Parent root = loader.load();
         ReleaseMenuController controller = loader.getController();
         controller.setUp(player);
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        stage.setScene(new Scene(root));
+        stage.centerOnScreen();
+        stage.show();
+    }
+
+    @FXML
+    public void switchToInventory(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/pocketraiders/view/Inventory.fxml"));
+        Parent root = loader.load();
+        InventoryController controller = loader.getController();
+        controller.setup(this.player);
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         stage.setScene(new Scene(root));
         stage.centerOnScreen();

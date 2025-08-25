@@ -29,6 +29,10 @@ public class Player {
         return this.password;
     }
 
+    public ArrayList<Raider> getOwnedRaiders() {
+        return this.ownedRaiders;
+    }
+
     public int getLumens() {
         return this.lumens;
     }
@@ -44,9 +48,31 @@ public class Player {
             deductLumens(pod.getLumenCost());
 
             selectedRaider = pod.selectRandomRaider();
-            ownedRaiders.add(selectedRaider);
+            if(checkIfOwned(selectedRaider)) {
+                addCopy(selectedRaider);
+            } else {
+                ownedRaiders.add(selectedRaider);
+            }
         }
         return selectedRaider;
+    }
+
+    private boolean checkIfOwned(Raider raider) {
+        for(int i = 0; i < ownedRaiders.size(); i++) {
+            if(raider.getName() == ownedRaiders.get(i).getName()) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    private void addCopy(Raider raider) {
+        for(int i = 0; i < ownedRaiders.size(); i++) {
+            if(raider.getName() == ownedRaiders.get(i).getName()) {
+                ownedRaiders.get(i).incrementCopy();
+            }
+        }
     }
 
 }

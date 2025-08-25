@@ -14,16 +14,16 @@ public class NullPod extends Pod{
 
     private ArrayList<Raider> initializeNullRaiders() {
         ArrayList<Raider> nullRaiders = new ArrayList<>();
-        nullRaiders.add(new CommonRaider(11, "Bytebug", "/raider-images/staragazer.png"));
-        nullRaiders.add(new CommonRaider(12, "Firewall", "/raider-images/staragazer.png"));
-        nullRaiders.add(new CommonRaider(13, "Packet Tracer", "/raider-images/staragazer.png"));
-        nullRaiders.add(new RareRaider(14, "Scripython", "/raider-images/staragazer.png"));
-        nullRaiders.add(new RareRaider(15, "Rabbit", "/raider-images/staragazer.png"));
-        nullRaiders.add(new RareRaider(16, "Seer", "/raider-images/staragazer.png"));
-        nullRaiders.add(new LegendaryRaider(17, "Overclocke", "/raider-images/staragazer.png"));
-        nullRaiders.add(new LegendaryRaider(18, "Cipherstorm", "/raider-images/staragazer.png"));
-        nullRaiders.add(new MythicalRaider(19, "WannaCry1", "/raider-images/staragazer.png"));
-        nullRaiders.add(new MythicalRaider(20, "[REDACTED]", "/raider-images/staragazer.png"));
+        nullRaiders.add(new CommonRaider(11, "Bytebug", "Null", "/raider-images/staragazer.png"));
+        nullRaiders.add(new CommonRaider(12, "Firewall", "Null", "/raider-images/staragazer.png"));
+        nullRaiders.add(new CommonRaider(13, "Packet Tracer", "Null", "/raider-images/staragazer.png"));
+        nullRaiders.add(new RareRaider(14, "Scripython", "Null", "/raider-images/staragazer.png"));
+        nullRaiders.add(new RareRaider(15, "Rabbit", "Null", "/raider-images/staragazer.png"));
+        nullRaiders.add(new RareRaider(16, "Seer", "Null", "/raider-images/staragazer.png"));
+        nullRaiders.add(new LegendaryRaider(17, "Overclocke", "Null", "/raider-images/staragazer.png"));
+        nullRaiders.add(new LegendaryRaider(18, "Cipherstorm", "Null", "/raider-images/staragazer.png"));
+        nullRaiders.add(new MythicalRaider(19, "WannaCry1", "Null", "/raider-images/staragazer.png"));
+        nullRaiders.add(new MythicalRaider(20, "[REDACTED]", "Null", "/raider-images/staragazer.png"));
 
         return nullRaiders;
     }

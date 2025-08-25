@@ -20,7 +20,6 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 
 import java.io.IOException;
-import java.util.Locale;
 
 public class ReleaseRevealController {
     private Player player;
@@ -49,7 +48,7 @@ public class ReleaseRevealController {
         announcementRarityLabel.setText("");
         Raider selectedRaider = player.drawRaider(podview.getPod());
 
-        // --- Sprite setup ---
+        // Sprite Setup
         spriteImg.setImage(selectedRaider.getSprite());
         spriteImg.setOpacity(0);
         spriteImg.setScaleX(0.7);
@@ -67,7 +66,7 @@ public class ReleaseRevealController {
 
         ParallelTransition spriteReveal = new ParallelTransition(fadeInSprite, scaleUpSprite);
 
-        // --- Announcement after sprite reveal ---
+        //Announcement after sprite reveal
         spriteReveal.setOnFinished(e -> {
             announcementMainLabel.setText(selectedRaider.getName());
             announcementRarityLabel.setText("" + selectedRaider.getRarity());
@@ -77,16 +76,21 @@ public class ReleaseRevealController {
                 case Rarity.LEGENDARY -> announcementRarityLabel.setStyle("-fx-text-fill: #eeff00");
                 case Rarity.MYTHICAL -> announcementRarityLabel.setStyle("-fx-text-fill: #ff0000");
             }
+
+            // UI state updates
+            updateUIState();
         });
 
-        // --- If legendary or mythical, play indicator first ---
+        // If legendary or mythical, play indicator first
         if (selectedRaider.getRarity() == Rarity.LEGENDARY || selectedRaider.getRarity() == Rarity.MYTHICAL) {
             playSpecialAnimation(spriteReveal, selectedRaider.getRarity());
         } else {
             spriteReveal.play();
         }
 
-        // --- UI state updates (not animated) ---
+    }
+
+    private void updateUIState() {
         lumenCountLabel.setText("" + player.getLumens());
         releaseRaiderBtn.setVisible(false);
         releaseAgainBtn.setVisible(true);
@@ -103,10 +107,6 @@ public class ReleaseRevealController {
         indicatorRectangle.setVisible(true);
         indicatorRectangle.setOpacity(0);
 
-        FadeTransition showIndicator = new FadeTransition(Duration.millis(1000), indicatorRectangle);
-        showIndicator.setFromValue(0);
-        showIndicator.setToValue(1);
-
         indicatorLabel.setVisible(true);
         indicatorLabel.setOpacity(0);
         if (rarity == Rarity.LEGENDARY) {
@@ -116,6 +116,10 @@ public class ReleaseRevealController {
             indicatorLabel.setText("A MYTHICAL RAIDER HAS BEEN RELEASED");
             indicatorRectangle.setStyle("-fx-fill: #ff0000");
         }
+
+        FadeTransition showIndicator = new FadeTransition(Duration.millis(1000), indicatorRectangle);
+        showIndicator.setFromValue(0);
+        showIndicator.setToValue(1);
 
         FadeTransition showIndicatorLabel = new FadeTransition(Duration.millis(1000), indicatorLabel);
         showIndicatorLabel.setFromValue(0);

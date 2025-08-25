@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="720.0" maxWidth="1280.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pocketraiders.controller.InventoryController">
+   <children>
+      <ImageView fitHeight="720.0" fitWidth="1280.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@/bg-images/inventorymenu.png" />
+         </image>
+      </ImageView>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" height="117.0" layoutY="40.0" opacity="0.7" stroke="BLACK" strokeType="INSIDE" width="469.0" />
+      <Label layoutX="98.0" layoutY="57.0" prefHeight="54.0" prefWidth="315.0" text="INVENTORY" textFill="WHITE">
+         <font>
+            <Font name="Segoe UI Black" size="52.0" />
+         </font>
+      </Label>
+      <Label layoutX="100.0" layoutY="114.0" prefHeight="37.0" prefWidth="402.0" text="CLICK ON THE RAIDER YOU WANT TO LEVEL UP" textFill="WHITE">
+         <font>
+            <Font name="Segoe UI Semilight" size="14.0" />
+         </font>
+      </Label>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" height="209.0" layoutX="100.0" layoutY="190.0" opacity="0.7" stroke="BLACK" strokeType="INSIDE" width="192.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" height="209.0" layoutX="100.0" layoutY="457.0" opacity="0.7" stroke="BLACK" strokeType="INSIDE" width="192.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" height="209.0" layoutX="322.0" layoutY="190.0" opacity="0.7" stroke="BLACK" strokeType="INSIDE" width="192.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" height="209.0" layoutX="322.0" layoutY="457.0" opacity="0.7" stroke="BLACK" strokeType="INSIDE" width="192.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" height="209.0" layoutX="545.0" layoutY="190.0" opacity="0.7" stroke="BLACK" strokeType="INSIDE" width="192.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" height="209.0" layoutX="545.0" layoutY="457.0" opacity="0.7" stroke="BLACK" strokeType="INSIDE" width="192.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" height="209.0" layoutX="767.0" layoutY="190.0" opacity="0.7" stroke="BLACK" strokeType="INSIDE" width="192.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" height="209.0" layoutX="767.0" layoutY="457.0" opacity="0.7" stroke="BLACK" strokeType="INSIDE" width="192.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" height="209.0" layoutX="989.0" layoutY="190.0" opacity="0.7" stroke="BLACK" strokeType="INSIDE" width="192.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" height="209.0" layoutX="989.0" layoutY="457.0" opacity="0.7" stroke="BLACK" strokeType="INSIDE" width="192.0" />
+      <Button fx:id="previousBtn" layoutX="8.0" layoutY="378.0" mnemonicParsing="false" prefWidth="84.0" style="-fx-background-color: transparent;" stylesheets="@/css/button.css" text="&lt;" textFill="WHITE">
+         <font>
+            <Font name="Segoe UI Black" size="40.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Button fx:id="nextBtn" layoutX="1189.0" layoutY="378.0" mnemonicParsing="false" prefWidth="84.0" style="-fx-background-color: transparent;" stylesheets="@/css/button.css" text="&gt;" textFill="WHITE">
+         <font>
+            <Font name="Segoe UI Black" size="40.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <ImageView fx:id="raiderSpriteImg" fitHeight="150.0" fitWidth="192.0" layoutX="121.0" layoutY="197.0" pickOnBounds="true" preserveRatio="true">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></ImageView>
+      <Label fx:id="raiderNameLabel" alignment="CENTER" layoutX="100.0" layoutY="345.0" prefHeight="25.0" prefWidth="192.0" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font name="Segoe UI Black" size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="raiderExpLevel" alignment="CENTER" layoutX="137.0" layoutY="370.0" prefHeight="0.0" prefWidth="118.0" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font name="Segoe UI Semibold" size="14.0" />
+         </font>
+      </Label>
+      <ImageView fx:id="raiderSpriteImg1" fitHeight="150.0" fitWidth="192.0" layoutX="343.0" layoutY="198.0" pickOnBounds="true" preserveRatio="true">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></ImageView>
+      <Label fx:id="raiderNameLabel1" alignment="CENTER" layoutX="322.0" layoutY="346.0" prefHeight="25.0" prefWidth="192.0" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font name="Segoe UI Black" size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="raiderExpLevel1" alignment="CENTER" layoutX="359.0" layoutY="371.0" prefHeight="0.0" prefWidth="118.0" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font name="Segoe UI Semibold" size="14.0" />
+         </font>
+      </Label>
+      <ImageView fx:id="raiderSpriteImg2" fitHeight="150.0" fitWidth="192.0" layoutX="565.0" layoutY="198.0" pickOnBounds="true" preserveRatio="true">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></ImageView>
+      <Label fx:id="raiderNameLabel2" alignment="CENTER" layoutX="546.0" layoutY="346.0" prefHeight="25.0" prefWidth="192.0" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font name="Segoe UI Black" size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="raiderExpLevel2" alignment="CENTER" layoutX="581.0" layoutY="371.0" prefHeight="0.0" prefWidth="118.0" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font name="Segoe UI Semibold" size="14.0" />
+         </font>
+      </Label>
+      <ImageView fx:id="raiderSpriteImg3" fitHeight="150.0" fitWidth="192.0" layoutX="788.0" layoutY="198.0" pickOnBounds="true" preserveRatio="true">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></ImageView>
+      <Label fx:id="raiderNameLabel3" alignment="CENTER" layoutX="767.0" layoutY="346.0" prefHeight="25.0" prefWidth="192.0" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font name="Segoe UI Black" size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="raiderExpLevel3" alignment="CENTER" layoutX="804.0" layoutY="371.0" prefHeight="0.0" prefWidth="118.0" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font name="Segoe UI Semibold" size="14.0" />
+         </font>
+      </Label>
+      <ImageView fx:id="raiderSpriteImg4" fitHeight="150.0" fitWidth="192.0" layoutX="1010.0" layoutY="198.0" pickOnBounds="true" preserveRatio="true">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></ImageView>
+      <Label fx:id="raiderNameLabel4" alignment="CENTER" layoutX="989.0" layoutY="346.0" prefHeight="25.0" prefWidth="192.0" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font name="Segoe UI Black" size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="raiderExpLevel4" alignment="CENTER" layoutX="1026.0" layoutY="371.0" prefHeight="0.0" prefWidth="118.0" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font name="Segoe UI Semibold" size="14.0" />
+         </font>
+      </Label>
+      <ImageView fx:id="raiderSpriteImg5" fitHeight="150.0" fitWidth="192.0" layoutX="121.0" layoutY="465.0" pickOnBounds="true" preserveRatio="true">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></ImageView>
+      <Label fx:id="raiderNameLabel5" alignment="CENTER" layoutX="100.0" layoutY="613.0" prefHeight="25.0" prefWidth="192.0" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font name="Segoe UI Black" size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="raiderExpLevel5" alignment="CENTER" layoutX="137.0" layoutY="638.0" prefHeight="0.0" prefWidth="118.0" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font name="Segoe UI Semibold" size="14.0" />
+         </font>
+      </Label>
+      <ImageView fx:id="raiderSpriteImg6" fitHeight="150.0" fitWidth="192.0" layoutX="343.0" layoutY="465.0" pickOnBounds="true" preserveRatio="true">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></ImageView>
+      <Label fx:id="raiderNameLabel6" alignment="CENTER" layoutX="322.0" layoutY="613.0" prefHeight="25.0" prefWidth="192.0" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font name="Segoe UI Black" size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="raiderExpLevel6" alignment="CENTER" layoutX="359.0" layoutY="638.0" prefHeight="0.0" prefWidth="118.0" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font name="Segoe UI Semibold" size="14.0" />
+         </font>
+      </Label>
+      <ImageView fx:id="raiderSpriteImg7" fitHeight="150.0" fitWidth="192.0" layoutX="565.0" layoutY="465.0" pickOnBounds="true" preserveRatio="true">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></ImageView>
+      <Label fx:id="raiderNameLabel7" alignment="CENTER" layoutX="545.0" layoutY="613.0" prefHeight="25.0" prefWidth="192.0" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font name="Segoe UI Black" size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="raiderExpLevel7" alignment="CENTER" layoutX="581.0" layoutY="638.0" prefHeight="0.0" prefWidth="118.0" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font name="Segoe UI Semibold" size="14.0" />
+         </font>
+      </Label>
+      <ImageView fx:id="raiderSpriteImg8" fitHeight="150.0" fitWidth="192.0" layoutX="788.0" layoutY="465.0" pickOnBounds="true" preserveRatio="true">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></ImageView>
+      <Label fx:id="raiderNameLabel8" alignment="CENTER" layoutX="767.0" layoutY="613.0" prefHeight="25.0" prefWidth="192.0" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font name="Segoe UI Black" size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="raiderExpLevel8" alignment="CENTER" layoutX="804.0" layoutY="638.0" prefHeight="0.0" prefWidth="118.0" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font name="Segoe UI Semibold" size="14.0" />
+         </font>
+      </Label>
+      <ImageView fx:id="raiderSpriteImg9" fitHeight="150.0" fitWidth="192.0" layoutX="1010.0" layoutY="465.0" pickOnBounds="true" preserveRatio="true">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></ImageView>
+      <Label fx:id="raiderNameLabel9" alignment="CENTER" layoutX="989.0" layoutY="613.0" prefHeight="25.0" prefWidth="192.0" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font name="Segoe UI Black" size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="raiderExpLevel9" alignment="CENTER" layoutX="1026.0" layoutY="638.0" prefHeight="0.0" prefWidth="118.0" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font name="Segoe UI Semibold" size="14.0" />
+         </font>
+      </Label>
+      <Button fx:id="backBtn" layoutX="8.0" layoutY="54.0" mnemonicParsing="false" onAction="#switchToMainMenu" prefWidth="84.0" style="-fx-background-color: transparent;" stylesheets="@/css/button.css" text="&lt;" textFill="WHITE">
+         <font>
+            <Font name="Segoe UI Black" size="40.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+   </children>
+</AnchorPane>
