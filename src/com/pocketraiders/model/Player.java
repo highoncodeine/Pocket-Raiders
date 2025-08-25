@@ -37,17 +37,16 @@ public class Player {
         this.lumens -= lumenCost;
     }
 
-    public void drawRaider(Pod pod) {
-        if(lumens >= pod.getLumenCost()) {
+    public Raider drawRaider(Pod pod) {
+        Raider selectedRaider = null;
+
+        if (lumens >= pod.getLumenCost()) {
             deductLumens(pod.getLumenCost());
 
-            Raider selectedRaider = pod.selectRandomRaider();
-            System.out.println("You have received " + selectedRaider.getName() + " [" +
-                    selectedRaider.getRarity() + "]");
+            selectedRaider = pod.selectRandomRaider();
             ownedRaiders.add(selectedRaider);
-        } else {
-            System.out.println("Not enough lumens");
         }
+        return selectedRaider;
     }
 
 }

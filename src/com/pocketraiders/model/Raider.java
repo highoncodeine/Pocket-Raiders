@@ -9,6 +9,7 @@ public abstract class Raider {
     private String name;
     private Rarity rarity;
     private Image sprite;
+    private int copies;
     private int level;
     private int xp;
     private int xpToNextLevel;
@@ -19,6 +20,7 @@ public abstract class Raider {
         this.id = id;
         this.name = name;
         this.rarity = rarity;
+        this.copies = 0;
         this.level = 1;
         this.xp = 0;
         this.xpToNextLevel = 100;

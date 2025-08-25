@@ -7,17 +7,19 @@ import com.pocketraiders.view.PodView;
 import javafx.animation.FadeTransition;
 import javafx.animation.ParallelTransition;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 import javafx.event.ActionEvent;
 import javafx.util.Duration;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,7 +29,6 @@ public class ReleaseMenuController {
     private PodView currentView;
     private int currentViewIndex;
     private Stage stage;
-    private Scene scene;
 
     @FXML private Button backBtn, selectBtn, nextBtn;
     @FXML private Label lumenCountLabel;
@@ -40,8 +41,13 @@ public class ReleaseMenuController {
         this.podViews = new ArrayList<>();
         podViews.add(new NovaPodView(new NovaPod()));
         podViews.add(new NullPodView(new NullPod()));
+        this.currentView = podViews.getFirst();
 
         lumenCountLabel.setText("" + player.getLumens());
+
+        if(player.getLumens() < 120) {
+            this.selectBtn.setDisable(true);
+        }
     }
 
     public void switchView(ActionEvent event) {
@@ -52,6 +58,28 @@ public class ReleaseMenuController {
         }
         this.currentView = podViews.get(this.currentViewIndex);
         updateView();
+    }
+
+    public void switchToMainMenu(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/pocketraiders/view/MainMenu.fxml"));
+        Parent root = loader.load();
+        MainMenuController controller = loader.getController();
+        controller.setUp(this.player);
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        stage.setScene(new Scene(root));
+        stage.centerOnScreen();
+        stage.show();
+    }
+
+    public void switchToReleaseReveal(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/pocketraiders/view/ReleaseReveal.fxml"));
+        Parent root = loader.load();
+        ReleaseRevealController controller = loader.getController();
+        controller.setUp(this.player, this.currentView);
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        stage.setScene(new Scene(root));
+        stage.centerOnScreen();
+        stage.show();
     }
 
     private void updateView() {
@@ -94,6 +122,12 @@ public class ReleaseMenuController {
                 ft.setFromValue(0.0);
                 ft.setToValue(1.0);
                 fadeInAll.getChildren().add(ft);
+            }
+
+            if(this.player.getLumens() < this.currentView.getLumenCost()) {
+                this.selectBtn.setDisable(true);
+            } else {
+                this.selectBtn.setDisable(false);
             }
 
             fadeInAll.play();

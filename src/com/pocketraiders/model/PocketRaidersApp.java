@@ -18,7 +18,7 @@ public class PocketRaidersApp extends javafx.application.Application {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/pocketraiders/view/MainMenu.fxml"));
         Parent root = loader.load();
         MainMenuController controller = loader.getController();
-        controller.setUp(new Player(101182410, "hadjj_dev", "asterisk", 142));
+        controller.setUp(new Player(101182410, "hadjj_dev", "asterisk", 999999));
         stage.setScene(new Scene(root));
         stage.setTitle("Pocket Raiders");
         stage.getIcons().add(new Image(getClass().getResourceAsStream("/logo-images/original.png")));

@@ -17,14 +17,14 @@ public class NovaPod extends Pod {
     private ArrayList<Raider> initializeNovaRaiders() {
         ArrayList<Raider> novaRaiders = new ArrayList<>();
         novaRaiders.add(new CommonRaider(1, "Staragazer", "/raider-images/staragazer.png"));
-        novaRaiders.add(new CommonRaider(2, "Nebula", "/raider-images/staragazer.png"));
-        novaRaiders.add(new CommonRaider(3, "Hubble", "/raider-images/staragazer.png"));
-        novaRaiders.add(new RareRaider(4, "Pluto", "/raider-images/staragazer.png"));
+        novaRaiders.add(new CommonRaider(2, "Nebula", "/raider-images/nebula.png"));
+        novaRaiders.add(new CommonRaider(3, "Hubble", "/raider-images/hubble.png"));
+        novaRaiders.add(new RareRaider(4, "Pluto", "/raider-images/pluto.png"));
         novaRaiders.add(new RareRaider(5, "Orion", "/raider-images/staragazer.png"));
-        novaRaiders.add(new RareRaider(6, "Radiar T.", "/raider-images/staragazer.png"));
+        novaRaiders.add(new RareRaider(6, "Radiar T.", "/raider-images/radiar t..png"));
         novaRaiders.add(new LegendaryRaider(7, "Voidrunner", "/raider-images/staragazer.png"));
         novaRaiders.add(new LegendaryRaider(8, "Aetherion", "/raider-images/staragazer.png"));
-        novaRaiders.add(new MythicalRaider(9, "Star", "/raider-images/staragazer.png"));
+        novaRaiders.add(new MythicalRaider(9, "Supernova", "/raider-images/staragazer.png"));
         novaRaiders.add(new MythicalRaider(10, "Aetherion Prime", "/raider-images/staragazer.png"));
 
         return novaRaiders;

@@ -21,7 +21,7 @@ public class MainMenuController {
     @FXML private Label playerInfoLabel;
 
     public void setUp(Player player) {
-        this.player = new Player(18251021, "hdev", "asterisk", 99999);
+        this.player = player;
         playerInfoLabel.setText("USER: " + this.player.getUsername() + " | ID:" + this.player.getId());
     }
 
