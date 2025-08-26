@@ -41,6 +41,10 @@ public class Player {
         this.lumens -= lumenCost;
     }
 
+    public void addLumens(int lumenCount) {
+        this.lumens += lumenCount;
+    }
+
     public Raider drawRaider(Pod pod) {
         Raider selectedRaider = null;
 

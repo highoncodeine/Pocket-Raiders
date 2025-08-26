@@ -27,10 +27,13 @@ public class InventoryController implements Initializable{
     private Player player;
     private ArrayList<Raider> ownedRaiders;
     private Stage stage;
+
     private Label[] raiderNameLabels;
     private Label[] raiderExpLevels;
     private ImageView[] raiderSpriteImgs;
     private Raider[] raiderSlot;
+    private int MAX_PAGE;
+    private int currentPage;
 
     @FXML private Button backBtn, previousBtn, nextBtn;
     @FXML private Label raiderNameLabel, raiderNameLabel1, raiderNameLabel2, raiderNameLabel3, raiderNameLabel4, raiderNameLabel5, raiderNameLabel6,
@@ -43,36 +46,78 @@ public class InventoryController implements Initializable{
     public void setup(Player player) {
         this.player = player;
         this.ownedRaiders = player.getOwnedRaiders();
+        this.MAX_PAGE = (int) Math.ceil((double) player.getOwnedRaiders().size() / 10);
+        this.currentPage = 1;
 
-        for (int i = 0; i < ownedRaiders.size(); i++) {
-            if (ownedRaiders.get(i) != null) {
-                Raider raider = ownedRaiders.get(i);
-                final int index = i;
+        if(MAX_PAGE == 1) {
+            nextBtn.setDisable(true);
+        }
 
-                raiderNameLabels[index].setText(raider.getName());
-                raiderExpLevels[index].setText("Level " + raider.getLevel());
-                raiderSpriteImgs[index].setImage(raider.getSprite());
+        previousBtn.setDisable(true);
 
-                raiderSpriteImgs[index].setOnMouseClicked(event -> {
-                    showRaiderDialog(raider);
-                });
+        displayRaiders(1);
+    }
 
-                raiderSpriteImgs[index].setOnMouseEntered(mouseEvent -> {
-                    ScaleTransition st = new ScaleTransition(Duration.millis(150), raiderSpriteImgs[index]);
-                    st.setToX(1.2);
-                    st.setToY(1.2);
-                    st.play();
-                });
+    private void displayRaiders(int page) {
+        for (int j = 0; j < 10; j++) {
+            raiderNameLabels[j].setText("");
+            raiderExpLevels[j].setText("");
+            raiderSpriteImgs[j].setImage(null);
+            raiderSpriteImgs[j].setOnMouseClicked(null);
+            raiderSpriteImgs[j].setOnMouseEntered(null);
+            raiderSpriteImgs[j].setOnMouseExited(null);
+            raiderSlot[j] = null;
+        }
 
-                raiderSpriteImgs[index].setOnMouseExited(mouseEvent -> {
-                    ScaleTransition st = new ScaleTransition(Duration.millis(150), raiderSpriteImgs[index]);
-                    st.setToX(1.0);
-                    st.setToY(1.0);
-                    st.play();
-                });
+        int start = (page - 1) * 10;
+        int end = Math.min(start + 10, ownedRaiders.size());
 
-                raiderSlot[index] = raider;
-            }
+        for (int i = start; i < end; i++) {
+            Raider raider = ownedRaiders.get(i);
+            int slot = i - start;
+
+            raiderNameLabels[slot].setText(raider.getName());
+            raiderExpLevels[slot].setText("Level " + raider.getLevel());
+            raiderSpriteImgs[slot].setImage(raider.getSprite());
+
+            raiderSpriteImgs[slot].setOnMouseClicked(event -> showRaiderDialog(raider));
+
+            raiderSpriteImgs[slot].setOnMouseEntered(mouseEvent -> {
+                ScaleTransition st = new ScaleTransition(Duration.millis(150), raiderSpriteImgs[slot]);
+                st.setToX(1.2);
+                st.setToY(1.2);
+                st.play();
+            });
+
+            raiderSpriteImgs[slot].setOnMouseExited(mouseEvent -> {
+                ScaleTransition st = new ScaleTransition(Duration.millis(150), raiderSpriteImgs[slot]);
+                st.setToX(1.0);
+                st.setToY(1.0);
+                st.play();
+            });
+
+            raiderSlot[slot] = raider;
+        }
+
+        updateNavigationButtons();
+    }
+
+    private void updateNavigationButtons() {
+        previousBtn.setDisable(currentPage == 1);
+        nextBtn.setDisable(currentPage == MAX_PAGE);
+    }
+
+    public void nextPage(ActionEvent event) throws IOException {
+        if (currentPage < MAX_PAGE) {
+            currentPage++;
+            displayRaiders(currentPage);
+        }
+    }
+
+    public void previousPage(ActionEvent event) throws IOException {
+        if (currentPage > 1) {
+            currentPage--;
+            displayRaiders(currentPage);
         }
     }
 

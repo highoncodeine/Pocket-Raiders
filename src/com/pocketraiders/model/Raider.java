@@ -23,12 +23,16 @@ public abstract class Raider {
         this.rarity = rarity;
         this.pod = pod;
         this.copies = 0;
-        this.level = 1;
+        this.level = 7;
         this.xp = 0;
-        this.xpToNextLevel = 100;
+        this.xpToNextLevel = 50;
         this.attackMin = 1;
         this.attackMax = 3;
         this.sprite = new Image(getClass().getResourceAsStream(spritePath));
+    }
+
+    public int getId() {
+        return this.id;
     }
 
     public String getName() {
@@ -75,7 +79,7 @@ public abstract class Raider {
 
     private void levelUp() {
         this.level++;
-        this.xpToNextLevel += 20;
+        this.xpToNextLevel += 10;
         this.xp = 0;
 
         switch(this.rarity) {

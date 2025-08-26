@@ -4,8 +4,8 @@ import com.pocketraiders.model.Player;
 import com.pocketraiders.model.Raider;
 import com.pocketraiders.model.Rarity;
 import javafx.animation.ScaleTransition;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.image.Image;
@@ -14,24 +14,22 @@ import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
-import java.io.IOException;
-
 public class RaiderDialogController {
     private Player player;
     private Raider raider;
     private Stage stage;
 
-    @FXML private Label raiderNameLabel, raiderLevelLabel, raiderMinLabel, raiderMaxLabel, raiderSpecialAbilityLabel, raiderCopiesLabel, raiderXpToNextLevelLabel;
+    @FXML private Label raiderNameLabel, raiderLevelLabel, raiderMinLabel, raiderMaxLabel, raiderSpecialAbilityLabel,
+            raiderCopiesLabel, raiderXpToNextLevelLabel, lumenBonusLabel;
     @FXML private ProgressBar raiderXpBar;
-    @FXML private ImageView raiderSpriteImg, raiderBackgroundImg;
+    @FXML private ImageView raiderSpriteImg, raiderBackgroundImg, lumenBonusImg;
     @FXML private Rectangle rarityRectangle;
 
 
     public void setUp(Player player, Raider raider) {
         this.player = player;
         this.raider = raider;
-        this.raiderXpBar.setProgress((double) raider.getXp() / raider.getXpToNextLevel());
-        this.raiderXpToNextLevelLabel.setText(this.raider.getXp() + "/" + this.raider.getXpToNextLevel());
+        setUpProgressBar(this.raider);
         this.raiderSpriteImg.setOnMouseClicked(mouseEvent -> {
             incrementRaider();
 
@@ -65,15 +63,30 @@ public class RaiderDialogController {
         }
     }
 
+    private void setUpProgressBar(Raider raider) {
+        this.raiderXpBar.setProgress((double) raider.getXp() / raider.getXpToNextLevel());
+        this.raiderXpToNextLevelLabel.setText(raider.getXp() + "/" + raider.getXpToNextLevel());
+    }
+
     private void incrementRaider() {
         this.raider.incrementXp(1);
         this.raiderXpBar.setProgress((double) raider.getXp() / raider.getXpToNextLevel());
         this.raiderXpToNextLevelLabel.setText(this.raider.getXp() + "/" + this.raider.getXpToNextLevel());
 
         if(this.raider.getXp() == 0) {
+            if(this.raider.getLevel() % 10 == 0) {
+                this.player.addLumens(150);
+                this.lumenBonusLabel.setVisible(false);
+                this.lumenBonusImg.setVisible(false);
+            } else if((this.raider.getLevel() + 1) % 10 == 0) {
+                this.lumenBonusLabel.setVisible(true);
+                this.lumenBonusImg.setVisible(true);
+            }
+
             raiderLevelLabel.setText("Level: " + raider.getLevel());
             raiderMinLabel.setText("MIN ATTACK DAMAGE: " + raider.getAttackMin());
             raiderMaxLabel.setText("MAX ATTACK DAMAGE: " + raider.getAttackMax());
+
         }
     }
 
