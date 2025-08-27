@@ -149,10 +149,10 @@ public class ReleaseRevealController {
         new SequentialTransition(fadeInIndicators, fadeOutIndicators).play();
     }
 
-    public void switchToReleaseMenu(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/pocketraiders/view/ReleaseMenu.fxml"));
+    public void switchToReleaseZone(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/pocketraiders/view/ReleaseZone.fxml"));
         Parent root = loader.load();
-        ReleaseMenuController controller = loader.getController();
+        ReleaseZoneController controller = loader.getController();
         controller.setUp(this.player);
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         stage.setScene(new Scene(root));

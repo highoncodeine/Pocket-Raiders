@@ -5,21 +5,18 @@ import com.pocketraiders.model.Raider;
 import com.pocketraiders.model.Rarity;
 import javafx.animation.ScaleTransition;
 import javafx.fxml.FXML;
-import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.shape.Rectangle;
-import javafx.stage.Stage;
 import javafx.util.Duration;
 
 public class RaiderDialogController {
     private Player player;
     private Raider raider;
-    private Stage stage;
 
-    @FXML private Label raiderNameLabel, raiderLevelLabel, raiderMinLabel, raiderMaxLabel, raiderSpecialAbilityLabel,
+    @FXML private Label raiderNameLabel, raiderLevelLabel, raiderMinLabel, raiderMaxLabel, raiderSpecialAbilityLabel, raiderHpLabel,
             raiderCopiesLabel, raiderXpToNextLevelLabel, lumenBonusLabel;
     @FXML private ProgressBar raiderXpBar;
     @FXML private ImageView raiderSpriteImg, raiderBackgroundImg, lumenBonusImg;
@@ -84,6 +81,7 @@ public class RaiderDialogController {
             }
 
             raiderLevelLabel.setText("Level: " + raider.getLevel());
+            raiderHpLabel.setText("HP: " + raider.getHp());
             raiderMinLabel.setText("MIN ATTACK DAMAGE: " + raider.getAttackMin());
             raiderMaxLabel.setText("MAX ATTACK DAMAGE: " + raider.getAttackMax());
 
@@ -94,6 +92,7 @@ public class RaiderDialogController {
         raiderNameLabel.setText(raider.getName());
         raiderLevelLabel.setText("Level: " + raider.getLevel());
         raiderCopiesLabel.setText("" + raider.getCopies());
+        raiderHpLabel.setText("HP: " + raider.getHp());
         raiderMinLabel.setText("MIN ATTACK DAMAGE: " + raider.getAttackMin());
         raiderMaxLabel.setText("MAX ATTACK DAMAGE: " + raider.getAttackMax());
         raiderSpecialAbilityLabel.setText("SPECIAL ABILITY: NONE");

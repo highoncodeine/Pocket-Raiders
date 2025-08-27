@@ -23,7 +23,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ReleaseMenuController {
+public class ReleaseZoneController {
     private Player player;
     private ArrayList<PodView> podViews;
     private PodView currentView;
@@ -42,6 +42,10 @@ public class ReleaseMenuController {
         podViews.add(new NovaPodView(new NovaPod()));
         podViews.add(new NullPodView(new NullPod()));
         this.currentView = podViews.getFirst();
+        
+        containedRaider1Img.setImage(currentView.getRaiders().get(3).getSprite());
+        containedRaider2Img.setImage(currentView.getRaiders().get(6).getSprite());
+        containedRaider3Img.setImage(currentView.getRaiders().get(8).getSprite());
 
         lumenCountLabel.setText("" + player.getLumens());
 
@@ -108,8 +112,8 @@ public class ReleaseMenuController {
             // Update images and labels after fade-out
             backgroundImg.setImage(currentView.getBackground());
             podSpriteImg.setImage(currentView.getPodSprite());
-            containedRaider1Img.setImage(currentView.getRaiders().get(0).getSprite());
-            containedRaider2Img.setImage(currentView.getRaiders().get(5).getSprite());
+            containedRaider1Img.setImage(currentView.getRaiders().get(3).getSprite());
+            containedRaider2Img.setImage(currentView.getRaiders().get(6).getSprite());
             containedRaider3Img.setImage(currentView.getRaiders().get(8).getSprite());
             podNameLabel.setText(currentView.getName() + " Pod");
             podDescLabel.setText(currentView.getDescription());

@@ -26,10 +26,10 @@ public class MainMenuController {
     }
 
     @FXML
-    public void switchToReleaseMenu(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/pocketraiders/view/ReleaseMenu.fxml"));
+    public void switchToReleaseZone(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/pocketraiders/view/ReleaseZone.fxml"));
         Parent root = loader.load();
-        ReleaseMenuController controller = loader.getController();
+        ReleaseZoneController controller = loader.getController();
         controller.setUp(player);
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         stage.setScene(new Scene(root));
@@ -48,4 +48,17 @@ public class MainMenuController {
         stage.centerOnScreen();
         stage.show();
     }
+
+    @FXML
+    public void switchToSelectRaiders(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/pocketraiders/view/SelectRaiders.fxml"));
+        Parent root = loader.load();
+        SelectRaidersController controller = loader.getController();
+        controller.setUp(this.player);
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        stage.setScene(new Scene(root));
+        stage.centerOnScreen();
+        stage.show();
+    }
+
 }

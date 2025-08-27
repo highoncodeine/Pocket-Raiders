@@ -14,10 +14,11 @@ public abstract class Raider {
     private int level;
     private int xp;
     private int xpToNextLevel;
+    private int hp;
     private int attackMin;
     private int attackMax;
 
-    public Raider(int id, String name, Rarity rarity, String pod, String spritePath) {
+    public Raider(int id, String name, Rarity rarity, int hp, String pod, String spritePath) {
         this.id = id;
         this.name = name;
         this.rarity = rarity;
@@ -26,6 +27,7 @@ public abstract class Raider {
         this.level = 7;
         this.xp = 0;
         this.xpToNextLevel = 50;
+        this.hp = hp;
         this.attackMin = 1;
         this.attackMax = 3;
         this.sprite = new Image(getClass().getResourceAsStream(spritePath));
@@ -45,6 +47,10 @@ public abstract class Raider {
 
     public String getPod() {
         return this.pod;
+    }
+
+    public int getHp() {
+        return this.hp;
     }
 
     public Image getSprite() {
@@ -81,6 +87,8 @@ public abstract class Raider {
         this.level++;
         this.xpToNextLevel += 10;
         this.xp = 0;
+
+        this.hp += 5;
 
         switch(this.rarity) {
             case Rarity.COMMON -> {

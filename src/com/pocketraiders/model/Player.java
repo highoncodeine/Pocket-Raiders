@@ -7,14 +7,25 @@ public class Player {
     private String username;
     private String password;
     private ArrayList<Raider> ownedRaiders;
+    private int level;
+    private int xp;
+    private int xpToNextLevel;
     private int lumens; //in-game currency
+    private RaidBoss currentRaidBoss;
+    private int currentRaidBossIndex;
+
 
     public Player(int id, String username, String password, int lumens) {
         this.id = id;
         this.username = username;
         this.password = password;
         this.ownedRaiders = new ArrayList<>();
+        this.level = 1;
+        this.xp = 0;
+        this.xpToNextLevel = 350;
         this.lumens = lumens;
+        this.currentRaidBoss = null;
+        this.currentRaidBossIndex = 0;
     }
 
     public int getId() {
@@ -35,6 +46,22 @@ public class Player {
 
     public int getLumens() {
         return this.lumens;
+    }
+
+    public RaidBoss getCurrentRaidBoss() {
+        return this.currentRaidBoss;
+    }
+
+    public int getCurrentRaidBossIndex() {
+        return this.currentRaidBossIndex;
+    }
+
+    public void setCurrentRaidBoss(RaidBoss raidBoss) {
+        this.currentRaidBoss = raidBoss;
+    }
+
+    public void incrementCurrentRaidBossIndex() {
+        this.currentRaidBossIndex++;
     }
 
     private void deductLumens(int lumenCost) {

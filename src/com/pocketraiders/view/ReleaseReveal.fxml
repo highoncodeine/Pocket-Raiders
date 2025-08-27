@@ -37,7 +37,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button fx:id="continueBtn" layoutX="786.0" layoutY="425.0" mnemonicParsing="false" onAction="#switchToReleaseMenu" prefHeight="47.0" prefWidth="292.0" style="-fx-background-color: #a8fc00; -fx-border-color: #0ef854; -fx-border-width: 2px;" stylesheets="@/css/button.css" text="CONTINUE" visible="false">
+      <Button fx:id="continueBtn" layoutX="786.0" layoutY="425.0" mnemonicParsing="false" onAction="#switchToReleaseZone" prefHeight="47.0" prefWidth="292.0" style="-fx-background-color: #a8fc00; -fx-border-color: #0ef854; -fx-border-width: 2px;" stylesheets="@/css/button.css" text="CONTINUE" visible="false">
          <font>
             <Font name="Segoe UI Black" size="23.0" />
          </font>

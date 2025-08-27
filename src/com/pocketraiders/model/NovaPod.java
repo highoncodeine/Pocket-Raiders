@@ -21,11 +21,11 @@ public class NovaPod extends Pod {
         novaRaiders.add(new CommonRaider(3, "Hubble", "Nova", "/raider-images/hubble.png"));
         novaRaiders.add(new RareRaider(4, "Pluto", "Nova", "/raider-images/pluto.png"));
         novaRaiders.add(new RareRaider(5, "Orion", "Nova", "/raider-images/orion.png"));
-        novaRaiders.add(new RareRaider(6, "Radiar T.", "Nova", "/raider-images/radiar t..png"));
+        novaRaiders.add(new RareRaider(6, "Radiar T.", "Nova", "/raider-images/radiar_t.png"));
         novaRaiders.add(new LegendaryRaider(7, "Voidrunner", "Nova", "/raider-images/voidrunner.png"));
-        novaRaiders.add(new LegendaryRaider(8, "Aetherion", "Nova", "/raider-images/staragazer.png"));
-        novaRaiders.add(new MythicalRaider(9, "Supernova", "Nova", "/raider-images/staragazer.png"));
-        novaRaiders.add(new MythicalRaider(10, "Aetherion Prime", "Nova", "/raider-images/staragazer.png"));
+        novaRaiders.add(new LegendaryRaider(8, "Aetherion", "Nova", "/raider-images/aetherion.png"));
+        novaRaiders.add(new MythicalRaider(9, "Supernova", "Nova", "/raider-images/supernova.png"));
+        novaRaiders.add(new MythicalRaider(10, "Aetherion Prime", "Nova", "/raider-images/aetherion_prime.png"));
 
         return novaRaiders;
     }

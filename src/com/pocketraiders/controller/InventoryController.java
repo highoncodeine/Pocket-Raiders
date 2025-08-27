@@ -141,7 +141,7 @@ public class InventoryController implements Initializable{
             controller.setUp(this.player, raider);
 
             Stage dialogStage = new Stage();
-            dialogStage.setTitle("Inventory" + raider.getName());
+            dialogStage.setTitle("Raider - " + raider.getName());
             dialogStage.setResizable(false);
             dialogStage.getIcons().add(new Image(getClass().getResourceAsStream("/logo-images/inverted.png")));
             dialogStage.initModality(Modality.APPLICATION_MODAL);

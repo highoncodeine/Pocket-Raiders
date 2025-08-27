@@ -19,7 +19,7 @@
             <Image url="@/logo-images/title_original.png" />
          </image>
       </ImageView>
-      <Button fx:id="raidBtn" layoutX="527.0" layoutY="389.0" mnemonicParsing="false" prefHeight="62.0" prefWidth="247.0" style="-fx-background-color: #a8fc00; -fx-border-color: #0ef854; -fx-border-width: 2px;" stylesheets="@/css/button.css" text="RAID">
+      <Button fx:id="raidBtn" layoutX="527.0" layoutY="389.0" mnemonicParsing="false" onAction="#switchToSelectRaiders" prefWidth="247.0" style="-fx-background-color: #a8fc00; -fx-border-color: #0ef854; -fx-border-width: 2px;" stylesheets="@/css/button.css" text="RAID">
          <font>
             <Font name="Segoe UI Black" size="23.0" />
          </font>
@@ -27,9 +27,9 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button fx:id="releaseBtn" layoutX="527.0" layoutY="473.0" mnemonicParsing="false" onAction="#switchToReleaseMenu" prefHeight="62.0" prefWidth="247.0" style="-fx-background-color: #a8fc00; -fx-border-color: #0ef854; -fx-border-width: 2px;" stylesheets="@/css/button.css" text="RELEASE A RAIDER">
+      <Button fx:id="releaseBtn" layoutX="527.0" layoutY="473.0" mnemonicParsing="false" onAction="#switchToReleaseZone" prefHeight="54.0" prefWidth="247.0" style="-fx-background-color: #a8fc00; -fx-border-color: #0ef854; -fx-border-width: 2px;" stylesheets="@/css/button.css" text="RELEASE ZONE">
          <font>
-            <Font name="Segoe UI Black" size="20.0" />
+            <Font name="Segoe UI Black" size="23.0" />
          </font>
          <cursor>
             <Cursor fx:constant="HAND" />
