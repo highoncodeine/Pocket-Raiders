@@ -55,7 +55,7 @@
       <Rectangle arcHeight="5.0" arcWidth="5.0" height="74.0" layoutX="74.0" layoutY="625.0" opacity="0.35" stroke="RED" strokeType="INSIDE" strokeWidth="0.0" width="79.0" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" height="74.0" layoutX="180.0" layoutY="625.0" opacity="0.35" stroke="RED" strokeType="INSIDE" strokeWidth="0.0" width="79.0" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" height="74.0" layoutX="288.0" layoutY="625.0" opacity="0.35" stroke="RED" strokeType="INSIDE" strokeWidth="0.0" width="79.0" />
-      <Button fx:id="startRaidBtn" layoutX="459.0" layoutY="635.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="230.0" style="-fx-background-color: #a8fc00; -fx-border-color: #0ef854; -fx-border-width: 2px;" stylesheets="@/css/button.css" text="START RAID">
+      <Button fx:id="startRaidBtn" layoutX="459.0" layoutY="635.0" mnemonicParsing="false" onAction="#switchToRaid" prefHeight="48.0" prefWidth="230.0" style="-fx-background-color: #a8fc00; -fx-border-color: #0ef854; -fx-border-width: 2px;" stylesheets="@/css/button.css" text="START RAID">
          <font>
             <Font name="Segoe UI Black" size="23.0" />
          </font>

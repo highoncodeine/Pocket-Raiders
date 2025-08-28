@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.effect.Bloom?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pocketraiders.controller.RaidController">
+   <children>
+      <ImageView fx:id="backgroundImg" fitHeight="720.0" fitWidth="1280.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@/bg-images/novapodmenu.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="raidBossSpriteImg" fitHeight="701.0" fitWidth="840.0" layoutX="579.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@/raider-images/voidrunner.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="720.0" fitWidth="1280.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@/bg-images/raiderstage.png" />
+         </image>
+      </ImageView>
+      <Rectangle fx:id="raiderRectangle" arcHeight="5.0" arcWidth="5.0" height="110.0" layoutX="379.0" layoutY="269.0" opacity="0.47" stroke="BLACK" strokeType="INSIDE" width="215.0" />
+      <ImageView fx:id="raiderSpriteImg" fitHeight="209.0" fitWidth="245.0" layoutX="174.0" layoutY="227.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@/raider-images/supernova.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="raiderSpriteImg1" fitHeight="209.0" fitWidth="245.0" layoutX="531.0" layoutY="471.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@/raider-images/aetherion_prime.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="raiderSpriteImg2" fitHeight="209.0" fitWidth="245.0" layoutX="999.0" layoutY="477.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@/raider-images/pluto.png" />
+         </image>
+      </ImageView>
+      <ProgressBar fx:id="raiderHpBar" layoutX="393.0" layoutY="342.0" prefHeight="21.0" prefWidth="193.0" progress="1.0" style="-fx-border-color: black; -fx-border-radius: 0;" stylesheets="@/css/hpbar.css" />
+      <Label fx:id="hpLabel" alignment="CENTER" layoutX="393.0" layoutY="347.0" prefHeight="32.0" prefWidth="29.0" text="HP" textAlignment="CENTER">
+         <font>
+            <Font name="Segoe UI Black" size="17.0" />
+         </font>
+      </Label>
+      <Label fx:id="raiderHpLabel" alignment="CENTER" layoutX="521.0" layoutY="344.0" prefHeight="2.0" prefWidth="66.0" text="200/200" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font name="Segoe UI Black" size="13.0" />
+         </font>
+      </Label>
+      <Label fx:id="raiderNameLabel" alignment="BOTTOM_LEFT" layoutX="394.0" layoutY="277.0" prefHeight="32.0" prefWidth="200.0" text="AETHERION PRIME" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font name="Segoe UI Black" size="17.0" />
+         </font>
+      </Label>
+      <Label fx:id="raiderLevelLabel" alignment="BOTTOM_LEFT" layoutX="394.0" layoutY="296.0" prefHeight="32.0" prefWidth="209.0" text="LVL 12" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font name="Segoe UI Black" size="17.0" />
+         </font>
+      </Label>
+      <Rectangle fx:id="raiderRectangle1" arcHeight="5.0" arcWidth="5.0" height="110.0" layoutX="322.0" layoutY="527.0" opacity="0.47" stroke="BLACK" strokeType="INSIDE" width="215.0" />
+      <ProgressBar fx:id="raiderHpBar1" layoutX="336.0" layoutY="600.0" prefHeight="21.0" prefWidth="193.0" progress="1.0" style="-fx-border-color: black; -fx-border-radius: 0;" stylesheets="@/css/hpbar.css" />
+      <Label fx:id="hpLabel1" alignment="CENTER" layoutX="336.0" layoutY="605.0" prefHeight="32.0" prefWidth="29.0" text="HP" textAlignment="CENTER">
+         <font>
+            <Font name="Segoe UI Black" size="17.0" />
+         </font>
+      </Label>
+      <Label fx:id="raiderHpLabel1" alignment="CENTER" layoutX="464.0" layoutY="602.0" prefHeight="2.0" prefWidth="66.0" text="200/200" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font name="Segoe UI Black" size="13.0" />
+         </font>
+      </Label>
+      <Label fx:id="raiderNameLabel1" alignment="BOTTOM_LEFT" layoutX="337.0" layoutY="535.0" prefHeight="32.0" prefWidth="200.0" text="AETHERION PRIME" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font name="Segoe UI Black" size="17.0" />
+         </font>
+      </Label>
+      <Label fx:id="raiderLevelLabel1" alignment="BOTTOM_LEFT" layoutX="337.0" layoutY="554.0" prefHeight="32.0" prefWidth="209.0" text="LVL 12" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font name="Segoe UI Black" size="17.0" />
+         </font>
+      </Label>
+      <Rectangle fx:id="raiderRectangle2" arcHeight="5.0" arcWidth="5.0" height="110.0" layoutX="766.0" layoutY="527.0" opacity="0.47" stroke="BLACK" strokeType="INSIDE" width="215.0" />
+      <ProgressBar fx:id="raiderHpBar2" layoutX="780.0" layoutY="600.0" prefHeight="21.0" prefWidth="193.0" progress="1.0" style="-fx-border-color: black; -fx-border-radius: 0;" stylesheets="@/css/hpbar.css" />
+      <Label fx:id="hpLabel2" alignment="CENTER" layoutX="780.0" layoutY="605.0" prefHeight="32.0" prefWidth="29.0" text="HP" textAlignment="CENTER">
+         <font>
+            <Font name="Segoe UI Black" size="17.0" />
+         </font>
+      </Label>
+      <Label fx:id="raiderHpLabel2" alignment="CENTER" layoutX="908.0" layoutY="602.0" prefHeight="2.0" prefWidth="66.0" text="200/200" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font name="Segoe UI Black" size="13.0" />
+         </font>
+      </Label>
+      <Label fx:id="raiderNameLabel2" alignment="BOTTOM_LEFT" layoutX="781.0" layoutY="535.0" prefHeight="32.0" prefWidth="200.0" text="AETHERION PRIME" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font name="Segoe UI Black" size="17.0" />
+         </font>
+      </Label>
+      <Label fx:id="raiderLevelLabel2" alignment="BOTTOM_LEFT" layoutX="781.0" layoutY="554.0" prefHeight="32.0" prefWidth="209.0" text="LVL 12" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font name="Segoe UI Black" size="17.0" />
+         </font>
+      </Label>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#e83c3c" height="110.0" layoutX="999.0" layoutY="227.0" opacity="0.47" stroke="BLACK" strokeType="INSIDE" width="215.0" />
+      <ProgressBar fx:id="raidBossHpBar" layoutX="1013.0" layoutY="300.0" prefHeight="21.0" prefWidth="193.0" progress="1.0" style="-fx-border-color: black; -fx-border-radius: 0;" stylesheets="@/css/hpbar.css" />
+      <Label alignment="CENTER" layoutX="1013.0" layoutY="305.0" prefHeight="32.0" prefWidth="29.0" text="HP" textAlignment="CENTER">
+         <font>
+            <Font name="Segoe UI Black" size="17.0" />
+         </font>
+      </Label>
+      <Label fx:id="raidBossHpLabel" alignment="CENTER" layoutX="1141.0" layoutY="302.0" prefHeight="2.0" prefWidth="66.0" text="200/200" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font name="Segoe UI Black" size="13.0" />
+         </font>
+      </Label>
+      <Label fx:id="raidBossNameLabel" alignment="BOTTOM_LEFT" layoutX="1014.0" layoutY="235.0" prefHeight="32.0" prefWidth="200.0" text="AETHERION PRIME" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font name="Segoe UI Black" size="17.0" />
+         </font>
+      </Label>
+      <Label fx:id="raidBossRarityLabel" alignment="BOTTOM_LEFT" layoutX="1014.0" layoutY="254.0" prefHeight="32.0" prefWidth="209.0" text="COMMON" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font name="Segoe UI Black" size="17.0" />
+         </font>
+      </Label>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#989fa4" height="158.0" layoutX="45.0" layoutY="27.0" opacity="0.41" stroke="#b29a9a" strokeType="INSIDE" strokeWidth="5.0" width="467.0" />
+      <TextArea fx:id="battleLogTextArea" layoutX="529.0" layoutY="27.0" opacity="0.44" prefHeight="158.0" prefWidth="274.0" text="&#10;&#10;&#10;">
+         <font>
+            <Font name="Segoe UI Black" size="12.0" />
+         </font></TextArea>
+      <Label fx:id="turnDeterminerLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="11.0" layoutY="547.0" prefHeight="141.0" prefWidth="237.0" text="RAIDERS TURN" textAlignment="CENTER" wrapText="true">
+         <font>
+            <Font name="Segoe UI Black" size="33.0" />
+         </font>
+         <effect>
+            <Bloom />
+         </effect>
+      </Label>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#a1b9d0" height="158.0" layoutX="33.0" layoutY="543.0" opacity="0.41" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="193.0" />
+      <Button fx:id="autoModeBtn" layoutX="1113.0" layoutY="27.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="122.0" style="-fx-background-color: #a8fc00; -fx-border-color: #0ef854; -fx-border-width: 2px;" stylesheets="@/css/button.css" text="AUTOMODE">
+         <font>
+            <Font name="Segoe UI Black" size="16.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Button fx:id="stopBtn1" layoutX="217.0" layoutY="166.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="122.0" style="-fx-background-color: #a8fc00; -fx-border-color: #0ef854; -fx-border-width: 2px;" stylesheets="@/css/button.css" text="STOP">
+         <font>
+            <Font name="Segoe UI Black" size="16.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Button fx:id="stopBtn" layoutX="68.0" layoutY="167.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="122.0" style="-fx-background-color: #a8fc00; -fx-border-color: #0ef854; -fx-border-width: 2px;" stylesheets="@/css/button.css" text="STOP">
+         <font>
+            <Font name="Segoe UI Black" size="16.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Button fx:id="stopBtn2" layoutX="371.0" layoutY="167.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="122.0" style="-fx-background-color: #a8fc00; -fx-border-color: #0ef854; -fx-border-width: 2px;" stylesheets="@/css/button.css" text="STOP">
+         <font>
+            <Font name="Segoe UI Black" size="16.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" height="110.0" layoutX="68.0" layoutY="46.0" opacity="0.41" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="122.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" height="110.0" layoutX="217.0" layoutY="46.0" opacity="0.41" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="122.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" height="110.0" layoutX="369.0" layoutY="46.0" opacity="0.41" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="122.0" />
+      <ImageView fx:id="miniRaiderSpriteImg" fitHeight="69.0" fitWidth="66.0" layoutX="35.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@/raider-images/supernova.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="miniRaiderSpriteImg1" fitHeight="69.0" fitWidth="66.0" layoutX="184.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@/raider-images/aetherion_prime.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="miniRaiderSpriteImg2" fitHeight="69.0" fitWidth="66.0" layoutX="338.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@/raider-images/pluto.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="attackLabel" alignment="CENTER" layoutX="68.0" layoutY="46.0" prefHeight="110.0" prefWidth="122.0" text="0" textFill="WHITE">
+         <font>
+            <Font name="Segoe UI Black" size="61.0" />
+         </font>
+      </Label>
+      <Label fx:id="attackLabel1" alignment="CENTER" layoutX="217.0" layoutY="46.0" prefHeight="110.0" prefWidth="122.0" text="0" textFill="WHITE">
+         <font>
+            <Font name="Segoe UI Black" size="61.0" />
+         </font>
+      </Label>
+      <Label fx:id="attackLabel2" alignment="CENTER" layoutX="369.0" layoutY="46.0" prefHeight="110.0" prefWidth="122.0" text="0" textFill="WHITE">
+         <font>
+            <Font name="Segoe UI Black" size="61.0" />
+         </font>
+      </Label>
+      <Label fx:id="turnCountLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="96.0" layoutY="674.0" prefHeight="10.0" prefWidth="66.0" text="TURN 1" textAlignment="CENTER" textFill="#bc0000" wrapText="true">
+         <font>
+            <Font name="Segoe UI Black" size="12.0" />
+         </font>
+         <effect>
+            <Bloom />
+         </effect>
+      </Label>
+      <Label fx:id="maxLabel2" alignment="CENTER" layoutX="386.0" layoutY="124.0" prefHeight="32.0" prefWidth="88.0" text="MAX!" textFill="WHITE" visible="false">
+         <font>
+            <Font name="Segoe UI Black" size="19.0" />
+         </font>
+      </Label>
+      <Label fx:id="maxLabel1" alignment="CENTER" layoutX="235.0" layoutY="124.0" prefHeight="32.0" prefWidth="88.0" text="MAX!" textFill="WHITE" visible="false">
+         <font>
+            <Font name="Segoe UI Black" size="19.0" />
+         </font>
+      </Label>
+      <Label fx:id="maxLabel" alignment="CENTER" layoutX="86.0" layoutY="124.0" prefHeight="32.0" prefWidth="88.0" text="MAX!" textFill="WHITE" visible="false">
+         <font>
+            <Font name="Segoe UI Black" size="19.0" />
+         </font>
+      </Label>
+      <Rectangle fx:id="raidBossRectangle" arcHeight="5.0" arcWidth="5.0" height="110.0" layoutX="1125.0" layoutY="166.0" opacity="0.41" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" visible="false" width="122.0" />
+      <Label fx:id="raidBossAttackLabel" alignment="CENTER" layoutX="1125.0" layoutY="166.0" prefHeight="110.0" prefWidth="122.0" text="3" textFill="WHITE" visible="false">
+         <font>
+            <Font name="Segoe UI Black" size="61.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

@@ -3,6 +3,7 @@ package com.pocketraiders.model;
 import javafx.scene.image.Image;
 
 import java.net.URL;
+import java.util.Random;
 
 public abstract class Raider {
     private int id; // three digit id
@@ -15,8 +16,11 @@ public abstract class Raider {
     private int xp;
     private int xpToNextLevel;
     private int hp;
+    private int maxHp;
     private int attackMin;
     private int attackMax;
+
+    private final Random random = new Random();
 
     public Raider(int id, String name, Rarity rarity, int hp, String pod, String spritePath) {
         this.id = id;
@@ -24,10 +28,11 @@ public abstract class Raider {
         this.rarity = rarity;
         this.pod = pod;
         this.copies = 0;
-        this.level = 7;
+        this.level = 1;
         this.xp = 0;
         this.xpToNextLevel = 50;
         this.hp = hp;
+        this.maxHp = hp;
         this.attackMin = 1;
         this.attackMax = 3;
         this.sprite = new Image(getClass().getResourceAsStream(spritePath));
@@ -51,6 +56,10 @@ public abstract class Raider {
 
     public int getHp() {
         return this.hp;
+    }
+
+    public int getMaxHp() {
+        return this.maxHp;
     }
 
     public Image getSprite() {
@@ -89,24 +98,41 @@ public abstract class Raider {
         this.xp = 0;
 
         this.hp += 5;
+        this.maxHp += 5;
 
         switch(this.rarity) {
             case Rarity.COMMON -> {
-                this.attackMin++;
-                this.attackMax++;
+                this.attackMin += 1;
+                this.attackMax += 4;
             }
             case Rarity.RARE -> {
-                this.attackMax += 2;
-                this.attackMin += 2;
+                this.attackMax += 25;
+                this.attackMin += 6;
             }
             case LEGENDARY -> {
                 this.attackMin += 3;
-                this.attackMax += 3;
+                this.attackMax += 8;
             }
             case MYTHICAL -> {
-                this.attackMax += 5;
-                this.attackMin += 5;
+                this.attackMax += 4;
+                this.attackMin += 10;
             }
         }
+    }
+
+    public void takeDamage(int damage) {
+        if(this.hp - damage <= 0) {
+            this.hp = 0;
+        } else {
+            this.hp -= damage;
+        }
+    }
+
+    public int generateAttack() {
+        return random.nextInt(this.attackMin, this.attackMax + 1);
+    }
+
+    public void resetHp() {
+        this.hp = this.maxHp;
     }
 }

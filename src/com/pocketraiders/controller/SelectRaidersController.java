@@ -19,6 +19,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
+import javax.swing.*;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -236,6 +237,8 @@ public class SelectRaidersController implements Initializable {
         if(player.getCurrentRaidBoss() == null) {
             player.setCurrentRaidBoss(raidBosses.get(currentRaidBossIndex));
             this.currentRaidBoss = player.getCurrentRaidBoss();
+        } else {
+            this.currentRaidBoss = player.getCurrentRaidBoss();
         }
         raidBossSprite.setImage(player.getCurrentRaidBoss().getSprite());
         raidBossLabel.setText("RAID BOSS " + player.getCurrentRaidBoss().getName().toUpperCase(Locale.ROOT) + " - HP " +
@@ -248,6 +251,17 @@ public class SelectRaidersController implements Initializable {
         Parent root = loader.load();
         MainMenuController controller = loader.getController();
         controller.setUp(this.player);
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        stage.setScene(new Scene(root));
+        stage.centerOnScreen();
+        stage.show();
+    }
+
+    public void switchToRaid(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/pocketraiders/view/Raid.fxml"));
+        Parent root = loader.load();
+        RaidController controller = loader.getController();
+        controller.setUp(this.player, this.selectedRaiders, this.currentRaidBoss);
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         stage.setScene(new Scene(root));
         stage.centerOnScreen();
@@ -294,16 +308,16 @@ public class SelectRaidersController implements Initializable {
                 raiderRectangle ,raiderRectangle1, raiderRectangle2, raiderRectangle3, raiderRectangle4, raiderRectangle5
         };
         raidBosses = new ArrayList<>();
-        raidBosses.add(new CommonRaidBoss(1, "Staragazer", "/raider-images/staragazer.png"));
-        raidBosses.add(new CommonRaidBoss(2, "Nebula", "/raider-images/nebula.png"));
-        raidBosses.add(new CommonRaidBoss(3, "Hubble", "/raider-images/hubble.png"));
-        raidBosses.add(new RareRaidBoss(4, "Pluto", "/raider-images/pluto.png"));
-        raidBosses.add(new RareRaidBoss(5, "Orion", "/raider-images/orion.png"));
-        raidBosses.add(new RareRaidBoss(6, "Radiar T.", "/raider-images/radiar_t.png"));
-        raidBosses.add(new LegendaryRaidBoss(7, "Voidrunner", "/raider-images/voidrunner.png"));
-        raidBosses.add(new LegendaryRaidBoss(8, "Aetherion", "/raider-images/aetherion.png"));
-        raidBosses.add(new MythicalRaidBoss(9, "Supernova", "/raider-images/supernova.png"));
-        raidBosses.add(new MythicalRaidBoss(10, "Aetherion Prime", "/raider-images/aetherion_prime.png"));
+        raidBosses.add(new CommonRaidBoss(1, "Staragazer", "Nova", "/raider-images/staragazer.png"));
+        raidBosses.add(new CommonRaidBoss(2, "Nebula", "Nova", "/raider-images/nebula.png"));
+        raidBosses.add(new CommonRaidBoss(3, "Hubble", "Nova", "/raider-images/hubble.png"));
+        raidBosses.add(new RareRaidBoss(4, "Pluto", "Nova", "/raider-images/pluto.png"));
+        raidBosses.add(new RareRaidBoss(5, "Orion", "Nova", "/raider-images/orion.png"));
+        raidBosses.add(new RareRaidBoss(6, "Radiar T.", "Nova", "/raider-images/radiar_t.png"));
+        raidBosses.add(new LegendaryRaidBoss(7, "Voidrunner", "Nova", "/raider-images/voidrunner.png"));
+        raidBosses.add(new LegendaryRaidBoss(8, "Aetherion", "Nova", "/raider-images/aetherion.png"));
+        raidBosses.add(new MythicalRaidBoss(9, "Supernova", "Nova", "/raider-images/supernova.png"));
+        raidBosses.add(new MythicalRaidBoss(10, "Aetherion Prime", "Nova", "/raider-images/aetherion_prime.png"));
 
         raiderSlot = new Raider[6];
         selectedRaiders = new Raider[3];

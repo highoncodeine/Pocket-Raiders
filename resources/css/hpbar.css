@@ -1,0 +1,18 @@
+/* hpbar.css */
+
+.progress-bar {
+    -fx-border-radius: 0;
+}
+/* Track (empty background) */
+.progress-bar .track {
+    -fx-background-color: linear-gradient(to bottom, #333333, #111111);
+    -fx-background-radius: 0;
+    -fx-background-insets: 0;
+}
+
+/* Filled portion (HP value) */
+.progress-bar .bar {
+    -fx-background-color: linear-gradient(to bottom, #2fd56b, #1d9f47);
+    -fx-background-radius: 0;
+    -fx-background-insets: 0;
+}
