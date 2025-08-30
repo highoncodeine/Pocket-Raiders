@@ -10,6 +10,7 @@ public class RaidBoss {
     private Rarity rarity;
     private String pod;
     private Image sprite;
+    private String spritePath;
     private int hp;
     private int maxHp;
     private int attackMin;
@@ -37,8 +38,29 @@ public class RaidBoss {
         this.lumenPity = 300;
         this.xpReward = xpReward;
         this.playerXpReward = playerXpReward;
+        this.spritePath = spritePath;
         this.sprite = new Image(getClass().getResourceAsStream(spritePath));
         createRaiderCopy(spritePath);
+    }
+
+    public RaidBoss(int id, String name, Rarity rarity, String pod, String spritePath, int hp, int maxHp, int attackMin,
+                    int attackMax, int lumenReward, int xpReward, int playerXpReward, int copiesReward, String copy, int lumenPity) {
+        this.id = id;
+        this.name = name;
+        this.rarity = rarity;
+        this.pod = pod;
+        this.spritePath = spritePath;
+        this.sprite = new Image(getClass().getResourceAsStream(spritePath));
+        this.hp = hp;
+        this.maxHp = maxHp;
+        this.attackMin = attackMin;
+        this.attackMax = attackMax;
+        this.lumenReward = lumenReward;
+        this.xpReward = xpReward;
+        this.playerXpReward = playerXpReward;
+        this.copiesReward = copiesReward;
+        createRaiderCopy(copy);
+        this.lumenPity = lumenPity;
     }
 
     private void createRaiderCopy(String spritePath) {
@@ -68,6 +90,10 @@ public class RaidBoss {
 
     public Image getSprite() {
         return this.sprite;
+    }
+
+    public String getSpritePath() {
+        return this.spritePath;
     }
 
     public int getHp() {

@@ -1,5 +1,6 @@
 package com.pocketraiders.controller;
 
+import com.pocketraiders.model.JSONManager;
 import com.pocketraiders.model.Player;
 import com.pocketraiders.model.Raider;
 import javafx.fxml.FXML;
@@ -39,11 +40,15 @@ public class MainMenuController {
         if(bestRaider != null) {
             bestRaiderLabel.setText(bestRaider.getName());
             for (Raider raiders : player.getOwnedRaiders()) {
-                if (raiders.getName() == bestRaider.getName()) {
+                if (raiders.getName().equals(bestRaider.getName())) {
                     bestRaiderSpriteImg.setImage(raiders.getSprite());
                 }
             }
         }
+    }
+
+    public void setStage(Stage stage) {
+        this.stage = stage;
     }
 
     private Raider getBestRaider() {
@@ -57,6 +62,11 @@ public class MainMenuController {
             }
         }
         return bestRaider;
+    }
+
+    public void save(ActionEvent event) throws IOException {
+        JSONManager json = new JSONManager(this.player);
+        json.save();
     }
 
     @FXML

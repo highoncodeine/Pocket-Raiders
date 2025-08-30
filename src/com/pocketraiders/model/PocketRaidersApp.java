@@ -1,5 +1,6 @@
 package com.pocketraiders.model;
 
+import com.pocketraiders.controller.LoginMenuController;
 import com.pocketraiders.controller.MainMenuController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -16,10 +17,10 @@ public class PocketRaidersApp extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/pocketraiders/view/MainMenu.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/pocketraiders/view/LoginMenu.fxml"));
         Parent root = loader.load();
-        MainMenuController controller = loader.getController();
-        controller.setUp(new Player(101182410, "hadjj_dev", "asterisk", 99999));
+        LoginMenuController controller = loader.getController();
+        controller.setUp(stage);
         stage.setScene(new Scene(root));
         stage.setTitle("Pocket Raiders");
         stage.getIcons().add(new Image(getClass().getResourceAsStream("/logo-images/original.png")));

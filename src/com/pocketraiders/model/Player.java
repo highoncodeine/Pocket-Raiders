@@ -6,16 +6,16 @@ public class Player {
     private int id;
     private String username;
     private String password;
-    private ArrayList<Raider> ownedRaiders;
     private int level;
     private int xp;
     private int xpToNextLevel;
     private int lumens; //in-game currency
-    private RaidBoss currentRaidBoss;
     private int currentRaidBossIndex;
+    private RaidBoss currentRaidBoss;
+    private ArrayList<Raider> ownedRaiders;
 
 
-    public Player(int id, String username, String password, int lumens) {
+    public Player(int id, String username, String password) {
         this.id = id;
         this.username = username;
         this.password = password;
@@ -23,9 +23,23 @@ public class Player {
         this.level = 1;
         this.xp = 0;
         this.xpToNextLevel = 350;
-        this.lumens = lumens;
+        this.lumens = 300;
         this.currentRaidBoss = null;
         this.currentRaidBossIndex = 0;
+    }
+
+    public Player(int id, String username, String password, int level, int xp, int xpToNextLevel, int lumens,
+                  int currentRaidBossIndex, RaidBoss currentRaidBoss, ArrayList<Raider> ownedRaiders) {
+        this.id = id;
+        this.username = username;
+        this.password = password;
+        this.level = level;
+        this.xp = xp;
+        this.xpToNextLevel = xpToNextLevel;
+        this.lumens = lumens;
+        this.currentRaidBossIndex = currentRaidBossIndex;
+        this.currentRaidBoss = currentRaidBoss;
+        this.ownedRaiders = ownedRaiders;
     }
 
     public int getId() {
@@ -109,19 +123,18 @@ public class Player {
     }
 
     private boolean checkIfOwned(Raider raider) {
-        for(int i = 0; i < ownedRaiders.size(); i++) {
-            if(raider.getName() == ownedRaiders.get(i).getName()) {
+        for (Raider owned : ownedRaiders) {
+            if (raider.getName().equals(owned.getName())) {
                 return true;
             }
         }
-
         return false;
     }
 
     private void addCopy(Raider raider) {
-        for(int i = 0; i < ownedRaiders.size(); i++) {
-            if(raider.getName() == ownedRaiders.get(i).getName()) {
-                ownedRaiders.get(i).incrementCopy();
+        for (Raider owned : ownedRaiders) {
+            if (raider.getName().equals(owned.getName())) {
+                owned.incrementCopy();
             }
         }
     }

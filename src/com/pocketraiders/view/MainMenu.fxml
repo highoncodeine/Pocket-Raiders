@@ -68,7 +68,7 @@
             <Font name="Segoe UI Black" size="30.0" />
          </font>
       </Label>
-      <Button fx:id="saveBtn" layoutX="202.0" layoutY="564.0" mnemonicParsing="false" onAction="#switchToInventory" prefWidth="247.0" style="-fx-background-color: #000000; -fx-border-color: #0ef854; -fx-border-width: 2px;" stylesheets="@/css/button.css" text="SAVE" textFill="WHITE">
+      <Button fx:id="saveBtn" layoutX="202.0" layoutY="564.0" mnemonicParsing="false" onAction="#save" prefWidth="247.0" style="-fx-background-color: #000000; -fx-border-color: #0ef854; -fx-border-width: 2px;" stylesheets="@/css/button.css" text="SAVE" textFill="WHITE">
          <font>
             <Font name="Segoe UI Black" size="23.0" />
          </font>

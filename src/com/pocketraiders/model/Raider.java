@@ -5,11 +5,12 @@ import javafx.scene.image.Image;
 import java.net.URL;
 import java.util.Random;
 
-public abstract class Raider {
+public class Raider {
     private int id; // three digit id
     private String name;
     private Rarity rarity;
     private String pod;
+    private String spritePath;
     private Image sprite;
     private int copies;
     private int level;
@@ -35,7 +36,26 @@ public abstract class Raider {
         this.maxHp = hp;
         this.attackMin = 1;
         this.attackMax = 5;
+        this.spritePath = spritePath;
         this.sprite = new Image(getClass().getResourceAsStream(spritePath));
+    }
+
+    public Raider(int id, String name, Rarity rarity, String pod, String spritePath, int copies, int level,
+                  int xp, int xpToNextLevel, int hp, int maxHp, int attackMin, int attackMax) {
+        this.id = id;
+        this.name = name;
+        this.rarity = rarity;
+        this.pod = pod;
+        this.spritePath = spritePath;
+        this.sprite = new Image(getClass().getResourceAsStream(spritePath));
+        this.copies = copies;
+        this.level = level;
+        this.xp = xp;
+        this.xpToNextLevel = xpToNextLevel;
+        this.hp = hp;
+        this.maxHp = maxHp;
+        this.attackMin = attackMin;
+        this.attackMax = attackMax;
     }
 
     public int getId() {
@@ -60,6 +80,10 @@ public abstract class Raider {
 
     public int getMaxHp() {
         return this.maxHp;
+    }
+
+    public String getSpritePath() {
+        return this.spritePath;
     }
 
     public Image getSprite() {

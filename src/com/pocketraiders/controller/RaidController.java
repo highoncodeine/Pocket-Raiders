@@ -71,9 +71,9 @@ public class RaidController implements Initializable {
         this.turnCount = 1;
         setUpRaiders(selectedRaiders);
         setUpRaidBoss(raidBoss);
-        if(raidBoss.getPod() == "Nova") {
+        if(raidBoss.getPod().equals("Nova")) {
             this.backgroundImg.setImage(new Image(getClass().getResourceAsStream("/bg-images/novapodmenu.png")));
-        } else if (raidBoss.getPod() == "Null") {
+        } else if (raidBoss.getPod().equals("Null")) {
             this.backgroundImg.setImage(new Image(getClass().getResourceAsStream("/bg-images/nullpodmenu.png")));
         }
 
