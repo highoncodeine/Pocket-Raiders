@@ -1,12 +1,15 @@
 package com.pocketraiders.controller;
 
 import com.pocketraiders.model.Player;
+import com.pocketraiders.model.Raider;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.control.ProgressBar;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
 import javafx.event.ActionEvent;
@@ -18,11 +21,42 @@ public class MainMenuController {
     private Player player;
     private Stage stage;
 
-    @FXML private Label playerInfoLabel;
+    @FXML private Label nameLabel, idLabel, lumenCountLabel, levelLabel, xpToNextLevelLabel, bestRaiderLabel, ownedRaidersLabel;
+    @FXML private ProgressBar xpBar;
+    @FXML private ImageView bestRaiderSpriteImg;
 
     public void setUp(Player player) {
         this.player = player;
-        playerInfoLabel.setText("USER: " + this.player.getUsername() + " | ID:" + this.player.getId());
+        nameLabel.setText(player.getUsername());
+        idLabel.setText("ID: " + player.getId());
+        lumenCountLabel.setText("" + player.getLumens());
+        levelLabel.setText("LEVEL " + player.getLevel());
+        xpToNextLevelLabel.setText("" + (player.getXpToNextLevel() - player.getXp()));
+        ownedRaidersLabel.setText("" + player.getOwnedRaiders().size());
+        xpBar.setProgress((double) player.getXp() / player.getXpToNextLevel());
+
+        Raider bestRaider = getBestRaider();
+        if(bestRaider != null) {
+            bestRaiderLabel.setText(bestRaider.getName());
+            for (Raider raiders : player.getOwnedRaiders()) {
+                if (raiders.getName() == bestRaider.getName()) {
+                    bestRaiderSpriteImg.setImage(raiders.getSprite());
+                }
+            }
+        }
+    }
+
+    private Raider getBestRaider() {
+        Raider bestRaider = null;
+        int bestLevel = 0;
+
+        for(Raider selected: player.getOwnedRaiders()) {
+            if(selected.getLevel() > bestLevel) {
+                bestLevel = selected.getLevel();
+                bestRaider = selected;
+            }
+        }
+        return bestRaider;
     }
 
     @FXML
@@ -54,8 +88,8 @@ public class MainMenuController {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/pocketraiders/view/SelectRaiders.fxml"));
         Parent root = loader.load();
         SelectRaidersController controller = loader.getController();
-        controller.setUp(this.player);
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        controller.setUp(this.player, stage);
         stage.setScene(new Scene(root));
         stage.centerOnScreen();
         stage.show();

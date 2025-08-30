@@ -50,7 +50,8 @@ public class SelectRaidersController implements Initializable {
     @FXML private ImageView selectedRaiderImg, selectedRaiderImg1, selectedRaiderImg2;
     @FXML private Rectangle raiderRectangle, raiderRectangle1, raiderRectangle2, raiderRectangle3, raiderRectangle4, raiderRectangle5;
 
-    public void setUp(Player player) {
+    public void setUp(Player player, Stage stage) {
+        this.stage = stage;
         this.player = player;
         this.ownedRaiders = player.getOwnedRaiders();
 
@@ -235,7 +236,7 @@ public class SelectRaidersController implements Initializable {
 
     private void setUpRaidBoss(Player player) {
         if(player.getCurrentRaidBoss() == null) {
-            player.setCurrentRaidBoss(raidBosses.get(currentRaidBossIndex));
+            player.setCurrentRaidBoss(raidBosses.get(player.getCurrentRaidBossIndex()));
             this.currentRaidBoss = player.getCurrentRaidBoss();
         } else {
             this.currentRaidBoss = player.getCurrentRaidBoss();
@@ -261,8 +262,8 @@ public class SelectRaidersController implements Initializable {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/pocketraiders/view/Raid.fxml"));
         Parent root = loader.load();
         RaidController controller = loader.getController();
-        controller.setUp(this.player, this.selectedRaiders, this.currentRaidBoss);
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        controller.setUp(this.player, this.selectedRaiders, this.currentRaidBoss, stage);
         stage.setScene(new Scene(root));
         stage.centerOnScreen();
         stage.show();

@@ -30,11 +30,11 @@ public abstract class Raider {
         this.copies = 0;
         this.level = 1;
         this.xp = 0;
-        this.xpToNextLevel = 50;
+        this.xpToNextLevel = 20;
         this.hp = hp;
         this.maxHp = hp;
         this.attackMin = 1;
-        this.attackMax = 3;
+        this.attackMax = 5;
         this.sprite = new Image(getClass().getResourceAsStream(spritePath));
     }
 
@@ -86,7 +86,7 @@ public abstract class Raider {
         int excessXp = 0;
         this.xp += xp;
         if(this.xp >= xpToNextLevel) {
-            excessXp = xpToNextLevel - this.xp;
+            excessXp = Math.abs(xpToNextLevel - this.xp);
             levelUp();
         }
         this.xp += excessXp;
@@ -103,19 +103,19 @@ public abstract class Raider {
         switch(this.rarity) {
             case Rarity.COMMON -> {
                 this.attackMin += 1;
-                this.attackMax += 4;
+                this.attackMax += 1;
             }
             case Rarity.RARE -> {
-                this.attackMax += 25;
-                this.attackMin += 6;
+                this.attackMin += 2;
+                this.attackMax += 2;
             }
             case LEGENDARY -> {
                 this.attackMin += 3;
-                this.attackMax += 8;
+                this.attackMax += 3;
             }
             case MYTHICAL -> {
+                this.attackMin += 4;
                 this.attackMax += 4;
-                this.attackMin += 10;
             }
         }
     }

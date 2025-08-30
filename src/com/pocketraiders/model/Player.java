@@ -44,6 +44,18 @@ public class Player {
         return this.ownedRaiders;
     }
 
+    public int getLevel() {
+        return this.level;
+    }
+
+    public int getXp() {
+        return this.xp;
+    }
+
+    public int getXpToNextLevel() {
+        return this.xpToNextLevel;
+    }
+
     public int getLumens() {
         return this.lumens;
     }
@@ -88,6 +100,14 @@ public class Player {
         return selectedRaider;
     }
 
+    public void addOwnedRaider(Raider raider) {
+        if(checkIfOwned(raider)){
+            addCopy(raider);
+        } else {
+            ownedRaiders.add(raider);
+        }
+    }
+
     private boolean checkIfOwned(Raider raider) {
         for(int i = 0; i < ownedRaiders.size(); i++) {
             if(raider.getName() == ownedRaiders.get(i).getName()) {
@@ -104,6 +124,25 @@ public class Player {
                 ownedRaiders.get(i).incrementCopy();
             }
         }
+    }
+
+    public void incrementXp(int xp) {
+        int excessXp = 0;
+        this.xp += xp;
+        if(this.xp >= xpToNextLevel) {
+            excessXp = Math.abs(xpToNextLevel - this.xp);
+            levelUp();
+        }
+        this.xp += excessXp;
+    }
+
+    private void levelUp() {
+        this.level++;
+        this.xp = 0;
+    }
+
+    public void incrementRaidBossIndex() {
+        this.currentRaidBossIndex += 1;
     }
 
 }

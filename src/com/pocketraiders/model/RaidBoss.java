@@ -16,11 +16,15 @@ public class RaidBoss {
     private int attackMax;
     private int lumenReward;
     private int xpReward;
+    private int playerXpReward;
+    private int copiesReward;
+    private Raider copy;
     private int lumenPity;
 
     private final Random random = new Random();
 
-    public RaidBoss(int id, String name, Rarity rarity, int hp, String pod, int attackMin, int attackMax, int lumenReward, int xpReward, String spritePath) {
+    public RaidBoss(int id, String name, Rarity rarity, int hp, String pod, int attackMin, int attackMax, int lumenReward,
+                        int xpReward, int playerXpReward, int copiesReward, String spritePath) {
         this.id = id;
         this.name = name;
         this.rarity = rarity;
@@ -32,7 +36,18 @@ public class RaidBoss {
         this.lumenReward = lumenReward;
         this.lumenPity = 300;
         this.xpReward = xpReward;
+        this.playerXpReward = playerXpReward;
         this.sprite = new Image(getClass().getResourceAsStream(spritePath));
+        createRaiderCopy(spritePath);
+    }
+
+    private void createRaiderCopy(String spritePath) {
+        switch(rarity) {
+            case COMMON -> this.copy = new CommonRaider(this.id, this.name, this.pod, spritePath);
+            case RARE -> this.copy = new RareRaider(this.id, this.name, this.pod, spritePath);
+            case LEGENDARY -> this.copy = new LegendaryRaider(this.id, this.name, this.pod, spritePath);
+            case MYTHICAL -> this.copy = new MythicalRaider(this.id, this.name, this.pod, spritePath);
+        }
     }
 
     public int getId() {
@@ -77,6 +92,22 @@ public class RaidBoss {
 
     public int getLumenPity() {
         return this.lumenPity;
+    }
+
+    public int getXpReward() {
+        return this.xpReward;
+    }
+
+    public int getPlayerXpReward() {
+        return this.playerXpReward;
+    }
+
+    public int getCopiesReward() {
+        return this.copiesReward;
+    }
+
+    public Raider getCopy() {
+        return this.copy;
     }
 
     public void takeDamage(int damage) {

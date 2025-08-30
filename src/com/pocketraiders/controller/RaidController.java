@@ -3,12 +3,16 @@ package com.pocketraiders.controller;
 import com.pocketraiders.model.Player;
 import com.pocketraiders.model.RaidBoss;
 import com.pocketraiders.model.Raider;
+import javafx.animation.FadeTransition;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
@@ -27,23 +31,24 @@ import java.util.Random;
 public class RaidController implements Initializable {
     private Player player;
     private Raider[] selectedRaiders;
-    private Raider selectedRaider1, selectedRaider2, selectedRaider3;
     private RaidBoss raidBoss;
     private int turnCount;
+    private int maxAttack;
+    private int overAllAttack;
     private Stage stage;
     private final Random random = new Random();
 
     @FXML private Label raiderNameLabel, raiderNameLabel1, raiderNameLabel2, raidBossNameLabel;
     @FXML private Label raiderLevelLabel, raiderLevelLabel1, raiderLevelLabel2, raidBossRarityLabel;
     @FXML private Label raiderHpLabel, raiderHpLabel1, raiderHpLabel2, raidBossHpLabel;
-    @FXML private Label attackLabel, attackLabel1, attackLabel2, maxLabel, maxLabel1, maxLabel2;
+    @FXML private Label attackLabel, attackLabel1, attackLabel2, maxLabel, maxLabel1, maxLabel2, bossMaxLabel;
     @FXML private Label turnDeterminerLabel, turnCountLabel, raidBossAttackLabel;
     @FXML private Label hpLabel, hpLabel1, hpLabel2;
     @FXML private ProgressBar raiderHpBar, raiderHpBar1, raiderHpBar2, raidBossHpBar;
     @FXML private Button stopBtn, stopBtn1, stopBtn2, autoModeBtn;
     @FXML private Rectangle raiderRectangle, raiderRectangle1, raiderRectangle2, raidBossRectangle;
     @FXML private ImageView raiderSpriteImg, raiderSpriteImg1, raiderSpriteImg2, raidBossSpriteImg, backgroundImg;
-    @FXML private ImageView miniRaiderSpriteImg, miniRaiderSpriteImg1, miniRaiderSpriteImg2;
+    @FXML private ImageView miniRaiderSpriteImg, miniRaiderSpriteImg1, miniRaiderSpriteImg2, transitionImg;
     @FXML private TextArea battleLogTextArea;
 
     private Label[] raiderNameLabels;
@@ -58,7 +63,9 @@ public class RaidController implements Initializable {
     private ImageView[] raiderSpriteImgs;
     private ImageView[] miniRaiderSpriteImgs;
 
-    public void setUp(Player player, Raider[] selectedRaiders, RaidBoss raidBoss) {
+    public void setUp(Player player, Raider[] selectedRaiders, RaidBoss raidBoss, Stage stage) {
+        transition();
+        this.stage = stage;
         this.player = player;
         this.selectedRaiders = selectedRaiders;
         this.turnCount = 1;
@@ -140,6 +147,8 @@ public class RaidController implements Initializable {
                     selectedBtn.setDisable(true);
                     if(selected.getAttackMax() == attack) {
                         selectedMax.setVisible(true);
+                        overAllAttack += attack;
+                        maxAttack++;
                     }
                     attackRaidBoss(selected, attack);
                     checkIfRaiderTurnDone();
@@ -176,14 +185,19 @@ public class RaidController implements Initializable {
 
     private void checkIfRaiderTurnDone() {
         if(stopBtn.isDisabled() && stopBtn1.isDisabled() && stopBtn2.isDisabled()) {
+            checkMax();
             this.turnCount++;
-            startRaidBossTurn();
+            if(this.raidBoss.getHp() != 0) {
+                startRaidBossTurn();
+            }
             checkWin();
         }
     }
 
     private void startRaidBossTurn() {
         Raider targetRaider = selectTarget();
+        bossMaxLabel.setVisible(false);
+        turnCountLabel.setText("TURN " + this.turnCount);
         this.raidBossRectangle.setVisible(true);
         this.raidBossAttackLabel.setVisible(true);
         appendBattleLog("--------------- Raid Boss Turn ---------------");
@@ -202,10 +216,13 @@ public class RaidController implements Initializable {
         timeline.setOnFinished(e -> {
             int attack = raidBoss.generateAttack();
             raidBossAttackLabel.setText(String.valueOf(attack));
+            if(attack == raidBoss.getAttackMax()) {
+                bossMaxLabel.setVisible(true);
+            }
             attackRaider(targetRaider, attack);
-            checkWin();
             startRaidersTurn();
             turnCount++;
+            checkWin();
         });
 
         timeline.play();
@@ -261,7 +278,18 @@ public class RaidController implements Initializable {
         raidBossHpLabel.setText(raidBoss.getHp() + " / " + raidBoss.getMaxHp());
     }
 
-    private void checkWin() {
+    private void checkMax() {
+        if(maxAttack == 3) {
+            appendBattleLog("[RAIDERS] All raiders hit their max attack");
+            appendBattleLog("[RAIDERS] The raiders dealt an extra " + overAllAttack + " damage");
+            raidBoss.takeDamage(overAllAttack);
+            updateHp();
+        }
+        this.overAllAttack = 0;
+        this.maxAttack = 0;
+    }
+
+    private void checkWin(){
         int deadRaiders = 0;
         for(int i = 0; i < 3; i++) {
             if(selectedRaiders[i] == null) {
@@ -270,9 +298,9 @@ public class RaidController implements Initializable {
         }
 
         if(deadRaiders == 3) {
-            System.out.println("RAID BOSS WINS");
+            switchToWinMenu(false);
         } else if(this.raidBoss.getHp() == 0) {
-            System.out.println("RAIDERS WINS");
+            switchToWinMenu(true);
         } else {
             return;
         }
@@ -288,12 +316,36 @@ public class RaidController implements Initializable {
         timeline.play();
     }
 
+    private void transition() {
+        FadeTransition fade = new FadeTransition(Duration.seconds(3), this.transitionImg);
+        fade.setFromValue(1.0);
+        fade.setToValue(0.0);
+        fade.setDelay(Duration.seconds(3));
+        fade.setOnFinished(e -> transitionImg.setVisible(false));
+        fade.play();
+    }
+
 
     private void appendBattleLog(String string) {
         Platform.runLater(() -> {
             battleLogTextArea.appendText(string + "\n");
             battleLogTextArea.setScrollTop(Double.MAX_VALUE);
         });
+    }
+
+    public void switchToWinMenu(boolean raidersWin){
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/pocketraiders/view/WinMenu.fxml"));
+            Parent root = loader.load();
+            WinMenuController controller = loader.getController();
+            controller.setStage(this.stage);
+            controller.setUp(this.player, this.selectedRaiders, this.raidBoss, raidersWin);
+            stage.setScene(new Scene(root));
+            stage.centerOnScreen();
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
