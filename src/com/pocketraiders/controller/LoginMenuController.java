@@ -23,7 +23,7 @@ import java.util.ResourceBundle;
 
 public class LoginMenuController implements Initializable {
     private Player[] players;
-    private String[] passwords;
+    private int playerCount;
     private Stage stage;
 
     @FXML private Label playerNameLabel, playerNameLabel1, playerNameLabel2, playerInfoLabel, playerInfoLabel1, playerInfoLabel2, warningLabel;
@@ -37,6 +37,7 @@ public class LoginMenuController implements Initializable {
 
     public void setUp(Stage stage) {
         this.stage = stage;
+        this.playerCount = 0;
         JSONManager saves = new JSONManager();
         players = saves.loadAllPlayers();
 
@@ -47,6 +48,7 @@ public class LoginMenuController implements Initializable {
                 playerInfoLabels[i].setText("LEVEL " + player.getLevel() + " - " + player.getLumens()
                         + " LUMENS - " + player.getOwnedRaiders().size() + " OWNED RAIDERS");
                 openBtns[i].setOnAction(event -> showPasswordDialog(player));
+                playerCount++;
             } else {
                 playerNameLabels[i].setVisible(false);
                 playerInfoLabels[i].setVisible(false);
@@ -59,14 +61,19 @@ public class LoginMenuController implements Initializable {
         String username = this.userNameTextField.getText();
         String password = this.passwordTextField.getText();
 
-        if(username != null && !username.isBlank() && password != null && !password.isBlank()) {
-            Player player = new Player(1234412, username, password);
-
-            JSONManager newSave = new JSONManager(player);
-            newSave.save();
-            switchToMainMenu(player);
-        } else {
+        if(this.playerCount == 3) {
             warningLabel.setVisible(true);
+            warningLabel.setText("THERE CAN ONLY BE THREE REGISTERED USERS IN THIS DEVICE");
+        } else {
+            if (username != null && !username.isBlank() && password != null && !password.isBlank()) {
+                Player player = new Player(1234412, username, password);
+
+                JSONManager newSave = new JSONManager(player);
+                newSave.save();
+                switchToMainMenu(player);
+            } else {
+                warningLabel.setVisible(true);
+            }
         }
     }
 
