@@ -10,7 +10,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import javafx.event.ActionEvent;
@@ -103,6 +105,58 @@ public class MainMenuController {
         stage.setScene(new Scene(root));
         stage.centerOnScreen();
         stage.show();
+    }
+
+    @FXML
+    public void showEditUsernameDialog(ActionEvent event) throws IOException {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/pocketraiders/view/EditDialog.fxml"));
+            Parent root = loader.load();
+
+            EditDialogController controller = loader.getController();
+
+            Stage dialogStage = new Stage();
+            dialogStage.setTitle("Change Username");
+            dialogStage.setResizable(false);
+            dialogStage.getIcons().add(new Image(getClass().getResourceAsStream("/logo-images/inverted.png")));
+            dialogStage.initModality(Modality.APPLICATION_MODAL);
+            controller.setup(player, "edit_username", dialogStage);
+
+            Scene scene = new Scene(root);
+            dialogStage.setScene(scene);
+
+            dialogStage.show();
+            dialogStage.setOnHidden(windowEvent -> this.setUp(this.player));
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    public void showEditPasswordDialog(ActionEvent event) throws IOException {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/pocketraiders/view/EditDialog.fxml"));
+            Parent root = loader.load();
+
+            EditDialogController controller = loader.getController();
+
+            Stage dialogStage = new Stage();
+            dialogStage.setTitle("Change Password");
+            dialogStage.setResizable(false);
+            dialogStage.getIcons().add(new Image(getClass().getResourceAsStream("/logo-images/inverted.png")));
+            dialogStage.initModality(Modality.APPLICATION_MODAL);
+            controller.setup(player, "edit_password", dialogStage);
+
+            Scene scene = new Scene(root);
+            dialogStage.setScene(scene);
+
+            dialogStage.show();
+            dialogStage.setOnHidden(windowEvent -> this.setUp(this.player));
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 }

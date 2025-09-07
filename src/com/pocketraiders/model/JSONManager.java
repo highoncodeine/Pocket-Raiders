@@ -3,6 +3,7 @@ package com.pocketraiders.model;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -24,6 +25,10 @@ public class JSONManager {
 
     public JSONManager() {
         this.object = new JSONObject();
+    }
+
+    public void setPlayer(Player player) {
+        this.player = player;
     }
 
     private void createObject() {
@@ -200,6 +205,18 @@ public class JSONManager {
     public void save() {
         createObject();
         print();
+    }
+
+    public void update(String oldUsername) {
+        if (oldUsername != null && !oldUsername.equals(player.getUsername())) {
+            deleteJsonFile(oldUsername);
+        }
+        save();
+    }
+
+    public static boolean deleteJsonFile(String username) {
+        File file = new File("saves/" + username + ".json");
+        return file.exists() && file.delete();
     }
 
     public Player[] loadAllPlayers() {

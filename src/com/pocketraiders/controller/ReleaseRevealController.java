@@ -14,8 +14,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
@@ -27,9 +27,8 @@ public class ReleaseRevealController {
     private Stage stage;
 
     @FXML private Button releaseAgainBtn, continueBtn, releaseRaiderBtn;
-    @FXML private Label lumenCountLabel, lumenCostLabel, announcementMainLabel, announcementRarityLabel, indicatorLabel;
-    @FXML private ImageView backgroundImg, spriteImg;
-    @FXML private Rectangle indicatorRectangle;
+    @FXML private Label lumenCountLabel, lumenCostLabel, announcementMainLabel, announcementRarityLabel;
+    @FXML private ImageView backgroundImg, spriteImg, indicatorImg;
 
     public void setUp(Player player, PodView podview) {
         this.player = player;
@@ -104,42 +103,31 @@ public class ReleaseRevealController {
     }
 
     private void playSpecialAnimation(ParallelTransition spriteReveal, Rarity rarity) {
-        indicatorRectangle.setVisible(true);
-        indicatorRectangle.setOpacity(0);
+        indicatorImg.setVisible(true);
+        indicatorImg.setOpacity(0);
+        spriteImg.setVisible(false);
 
-        indicatorLabel.setVisible(true);
-        indicatorLabel.setOpacity(0);
         if (rarity == Rarity.LEGENDARY) {
-            indicatorLabel.setText("A LEGENDARY RAIDER HAS BEEN RELEASED");
-            indicatorRectangle.setStyle("-fx-fill: #eeff00");
+            indicatorImg.setImage(new Image(getClass().getResourceAsStream("/bg-images/legendaryrelease.png")));
         } else {
-            indicatorLabel.setText("A MYTHICAL RAIDER HAS BEEN RELEASED");
-            indicatorRectangle.setStyle("-fx-fill: #ff0000");
+            indicatorImg.setImage(new Image(getClass().getResourceAsStream("/bg-images/mythicalrelease.png")));
         }
 
-        FadeTransition showIndicator = new FadeTransition(Duration.millis(1000), indicatorRectangle);
+        FadeTransition showIndicator = new FadeTransition(Duration.millis(2000), indicatorImg);
         showIndicator.setFromValue(0);
         showIndicator.setToValue(1);
 
-        FadeTransition showIndicatorLabel = new FadeTransition(Duration.millis(1000), indicatorLabel);
-        showIndicatorLabel.setFromValue(0);
-        showIndicatorLabel.setToValue(1);
-
-        FadeTransition concealIndicator = new FadeTransition(Duration.millis(1000), indicatorRectangle);
+        FadeTransition concealIndicator = new FadeTransition(Duration.millis(2000), indicatorImg);
         concealIndicator.setFromValue(1);
         concealIndicator.setToValue(0);
-        concealIndicator.setOnFinished(ev -> indicatorRectangle.setVisible(false));
+        concealIndicator.setOnFinished(ev -> indicatorImg.setVisible(false));
 
-        FadeTransition concealIndicatorLabel = new FadeTransition(Duration.millis(1000), indicatorLabel);
-        concealIndicatorLabel.setFromValue(1);
-        concealIndicatorLabel.setToValue(0);
-        concealIndicatorLabel.setOnFinished(ev -> indicatorLabel.setVisible(false));
-
-        ParallelTransition fadeInIndicators = new ParallelTransition(showIndicator, showIndicatorLabel);
-        ParallelTransition fadeOutIndicators = new ParallelTransition(concealIndicator, concealIndicatorLabel);
+        ParallelTransition fadeInIndicators = new ParallelTransition(showIndicator);
+        ParallelTransition fadeOutIndicators = new ParallelTransition(concealIndicator);
 
         // --- Only after indicators are done, set the sprite ---
         fadeOutIndicators.setOnFinished(e -> {
+            spriteImg.setVisible(true);
             spriteImg.setOpacity(0);
             spriteImg.setScaleX(0.7);
             spriteImg.setScaleY(0.7);
