@@ -68,7 +68,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </ImageView>
-      <Label fx:id="raidBossLabel" alignment="CENTER" layoutX="776.0" layoutY="617.0" prefHeight="37.0" prefWidth="407.0" text="RAID BOSS AETHERION PRIME - HP 4035" textAlignment="JUSTIFY" textFill="WHITE">
+      <Label fx:id="raidBossLabel" alignment="CENTER" layoutX="776.0" layoutY="617.0" prefHeight="37.0" prefWidth="407.0" text="AETHERION PRIME - HP 4035" textAlignment="JUSTIFY" textFill="WHITE">
          <font>
             <Font name="Segoe UI Black" size="15.0" />
          </font>
@@ -196,16 +196,30 @@
          <image>
             <Image url="@../../../../resources/raider-images/radiar_t.png" />
          </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </ImageView>
       <ImageView fx:id="selectedRaiderImg1" fitHeight="74.0" fitWidth="79.0" layoutX="183.0" layoutY="625.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../../resources/raider-images/radiar_t.png" />
          </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </ImageView>
       <ImageView fx:id="selectedRaiderImg2" fitHeight="74.0" fitWidth="79.0" layoutX="291.0" layoutY="625.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../../resources/raider-images/radiar_t.png" />
          </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </ImageView>
+      <Label fx:id="stageLevelLabel" alignment="CENTER" layoutX="838.0" layoutY="80.0" prefHeight="67.0" prefWidth="284.0" text="LVL 200" textAlignment="JUSTIFY" textFill="#eeeeee">
+         <font>
+            <Font name="Segoe UI Black" size="47.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

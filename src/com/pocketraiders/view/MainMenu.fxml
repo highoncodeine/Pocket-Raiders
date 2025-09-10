@@ -161,5 +161,10 @@
             <Font name="Segoe UI Black" size="19.0" />
          </font>
       </Label>
+      <Label fx:id="savedNotificationLabel" layoutX="20.0" layoutY="26.0" text="CHANGES SAVED" textFill="#00ff6f" visible="false">
+         <font>
+            <Font name="Segoe UI Light" size="20.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

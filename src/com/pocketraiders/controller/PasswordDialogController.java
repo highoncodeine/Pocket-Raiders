@@ -2,20 +2,25 @@ package com.pocketraiders.controller;
 
 import com.pocketraiders.model.JSONManager;
 import com.pocketraiders.model.Player;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
+import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-public class PasswordDialogController {
+public class PasswordDialogController implements Initializable {
     private Player player;
     private Stage stage;
 
@@ -36,6 +41,7 @@ public class PasswordDialogController {
         }
     }
 
+
     public void switchToMainMenu(Player player, ActionEvent event){
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/pocketraiders/view/MainMenu.fxml"));
@@ -47,11 +53,26 @@ public class PasswordDialogController {
             stage.centerOnScreen();
             stage.show();
 
-            Stage dialogStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            Stage dialogStage = (Stage) passwordTextField.getScene().getWindow();
             dialogStage.close();
 
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        Platform.runLater(() -> {
+            passwordTextField.getScene().setOnKeyPressed(event -> {
+                if (event.getCode() == KeyCode.ENTER) {
+                    try {
+                        verify(new ActionEvent(event.getSource(), null));
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+            });
+        });
     }
 }

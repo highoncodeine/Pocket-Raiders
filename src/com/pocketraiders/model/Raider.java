@@ -107,13 +107,13 @@ public class Raider {
     }
 
     public void incrementXp(int xp) {
-        int excessXp = 0;
         this.xp += xp;
-        if(this.xp >= xpToNextLevel) {
+        while(this.xp >= xpToNextLevel) {
+            int excessXp = 0;
             excessXp = Math.abs(xpToNextLevel - this.xp);
             levelUp();
+            this.xp += excessXp;
         }
-        this.xp += excessXp;
     }
 
     private void levelUp() {

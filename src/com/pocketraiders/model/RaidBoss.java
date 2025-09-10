@@ -38,6 +38,7 @@ public class RaidBoss {
         this.lumenPity = 300;
         this.xpReward = xpReward;
         this.playerXpReward = playerXpReward;
+        this.copiesReward = copiesReward;
         this.spritePath = spritePath;
         this.sprite = new Image(getClass().getResourceAsStream(spritePath));
         createRaiderCopy(spritePath);

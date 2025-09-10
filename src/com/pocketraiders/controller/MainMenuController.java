@@ -24,7 +24,7 @@ public class MainMenuController {
     private Player player;
     private Stage stage;
 
-    @FXML private Label nameLabel, idLabel, lumenCountLabel, levelLabel, xpToNextLevelLabel, bestRaiderLabel, ownedRaidersLabel;
+    @FXML private Label nameLabel, idLabel, lumenCountLabel, levelLabel, xpToNextLevelLabel, bestRaiderLabel, ownedRaidersLabel, savedNotificationLabel;
     @FXML private ProgressBar xpBar;
     @FXML private ImageView bestRaiderSpriteImg;
 
@@ -69,6 +69,7 @@ public class MainMenuController {
     public void save(ActionEvent event) throws IOException {
         JSONManager json = new JSONManager(this.player);
         json.save();
+        savedNotificationLabel.setVisible(true);
     }
 
     @FXML

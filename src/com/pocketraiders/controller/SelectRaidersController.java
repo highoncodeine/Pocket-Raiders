@@ -44,7 +44,7 @@ public class SelectRaidersController implements Initializable {
     private int currentPage;
 
     @FXML private Label raiderNameLabel, raiderNameLabel1, raiderNameLabel2, raiderNameLabel3, raiderNameLabel4, raiderNameLabel5, raidBossLabel;
-    @FXML private Label raiderLevelLabel, raiderLevelLabel1, raiderLevelLabel2, raiderLevelLabel3, raiderLevelLabel4, raiderLevelLabel5;
+    @FXML private Label raiderLevelLabel, raiderLevelLabel1, raiderLevelLabel2, raiderLevelLabel3, raiderLevelLabel4, raiderLevelLabel5, stageLevelLabel;
     @FXML private Button backBtn, previousBtn, nextBtn, startRaidBtn;
     @FXML private ImageView raiderSpriteImg, raiderSpriteImg1, raiderSpriteImg2, raiderSpriteImg3, raiderSpriteImg4, raiderSpriteImg5, raidBossSprite;
     @FXML private ImageView selectedRaiderImg, selectedRaiderImg1, selectedRaiderImg2;
@@ -195,7 +195,11 @@ public class SelectRaidersController implements Initializable {
         ImageView[] slots = { selectedRaiderImg, selectedRaiderImg1, selectedRaiderImg2 };
         for(int i = 0; i < 3; i++) {
             if(selectedRaiders[i] != null) {
+                Raider raider = selectedRaiders[i];
                 slots[i].setImage(selectedRaiders[i].getSprite());
+                slots[i].setOnMouseClicked(mouseEvent -> {
+                   unselectRaider(raider);
+                });
             } else {
                 slots[i].setImage(null);
             }
@@ -235,6 +239,7 @@ public class SelectRaidersController implements Initializable {
     }
 
     private void setUpRaidBoss(Player player) {
+        stageLevelLabel.setText("LEVEL: " + player.getLevel());
         if(player.getCurrentRaidBoss() == null) {
             player.setCurrentRaidBoss(raidBosses.get(player.getCurrentRaidBossIndex()));
             this.currentRaidBoss = player.getCurrentRaidBoss();
@@ -242,7 +247,7 @@ public class SelectRaidersController implements Initializable {
             this.currentRaidBoss = player.getCurrentRaidBoss();
         }
         raidBossSprite.setImage(player.getCurrentRaidBoss().getSprite());
-        raidBossLabel.setText("RAID BOSS " + player.getCurrentRaidBoss().getName().toUpperCase(Locale.ROOT) + " - HP " +
+        raidBossLabel.setText("" + player.getCurrentRaidBoss().getName().toUpperCase(Locale.ROOT) + " | HP " +
                 player.getCurrentRaidBoss().getHp());
     }
 
@@ -282,6 +287,10 @@ public class SelectRaidersController implements Initializable {
             dialogStage.setResizable(false);
             dialogStage.getIcons().add(new Image(getClass().getResourceAsStream("/logo-images/inverted.png")));
             dialogStage.initModality(Modality.APPLICATION_MODAL);
+            dialogStage.setOnHidden(event -> {
+                displayRaiders(this.currentPage);
+            });
+
 
             Scene scene = new Scene(root);
             dialogStage.setScene(scene);
@@ -319,6 +328,16 @@ public class SelectRaidersController implements Initializable {
         raidBosses.add(new LegendaryRaidBoss(8, "Aetherion", "Nova", "/raider-images/aetherion.png"));
         raidBosses.add(new MythicalRaidBoss(9, "Supernova", "Nova", "/raider-images/supernova.png"));
         raidBosses.add(new MythicalRaidBoss(10, "Aetherion Prime", "Nova", "/raider-images/aetherion_prime.png"));
+        raidBosses.add(new CommonRaidBoss(11, "Bytebug", "Null", "/raider-images/bytebug.png"));
+        raidBosses.add(new CommonRaidBoss(12, "Firewall", "Null", "/raider-images/firewall.png"));
+        raidBosses.add(new RareRaidBoss(13, "Packet Tracer", "Null", "/raider-images/packet_tracer.png"));
+        raidBosses.add(new RareRaidBoss(14, "Scripython", "Null", "/raider-images/staragazer.png"));
+        raidBosses.add(new RareRaidBoss(15, "Rabbit", "Null", "/raider-images/staragazer.png"));
+        raidBosses.add(new RareRaidBoss(16, "Seer", "Null", "/raider-images/seer.png"));
+        raidBosses.add(new LegendaryRaidBoss(17, "Overclocke", "Null", "/raider-images/staragazer.png"));
+        raidBosses.add(new LegendaryRaidBoss(18, "Cipherstorm", "Null", "/raider-images/staragazer.png"));
+        raidBosses.add(new MythicalRaidBoss(19, "WannaCry1", "Null", "/raider-images/staragazer.png"));
+        raidBosses.add(new MythicalRaidBoss(20, "[REDACTED]", "Null", "/raider-images/staragazer.png"));
 
         raiderSlot = new Raider[6];
         selectedRaiders = new Raider[3];

@@ -151,6 +151,7 @@ public class RaidController implements Initializable {
                         maxAttack++;
                     }
                     attackRaidBoss(selected, attack);
+                    checkWin();
                     checkIfRaiderTurnDone();
                 });
 

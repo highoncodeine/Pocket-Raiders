@@ -145,6 +145,9 @@ public class InventoryController implements Initializable{
             dialogStage.setResizable(false);
             dialogStage.getIcons().add(new Image(getClass().getResourceAsStream("/logo-images/inverted.png")));
             dialogStage.initModality(Modality.APPLICATION_MODAL);
+            dialogStage.setOnHidden(event -> {
+                displayRaiders(this.currentPage);
+            });
 
             Scene scene = new Scene(root);
             dialogStage.setScene(scene);

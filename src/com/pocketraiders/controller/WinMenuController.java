@@ -103,7 +103,9 @@ public class WinMenuController implements Initializable {
 
         playerLevelLabel.setText("Level " + player.getLevel());
         player.addLumens(raidBoss.getLumenReward());
-        player.addOwnedRaider(raidBoss.getCopy());
+        for(int i = 0; i < raidBoss.getCopiesReward(); i++) {
+            player.addOwnedRaider(raidBoss.getCopy());
+        }
         this.player.setCurrentRaidBoss(null);
         this.player.incrementRaidBossIndex();
     }
