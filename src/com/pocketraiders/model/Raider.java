@@ -13,6 +13,7 @@ public class Raider {
     private String spritePath;
     private Image sprite;
     private int copies;
+    private float statsIncreaseRate;
     private int level;
     private int xp;
     private int xpToNextLevel;
@@ -29,6 +30,7 @@ public class Raider {
         this.rarity = rarity;
         this.pod = pod;
         this.copies = 0;
+        this.statsIncreaseRate = 1;
         this.level = 1;
         this.xp = 0;
         this.xpToNextLevel = 20;
@@ -38,6 +40,7 @@ public class Raider {
         this.attackMax = 5;
         this.spritePath = spritePath;
         this.sprite = new Image(getClass().getResourceAsStream(spritePath));
+        computeStatsIncreaseRate();
     }
 
     public Raider(int id, String name, Rarity rarity, String pod, String spritePath, int copies, int level,
@@ -49,6 +52,7 @@ public class Raider {
         this.spritePath = spritePath;
         this.sprite = new Image(getClass().getResourceAsStream(spritePath));
         this.copies = copies;
+        this.statsIncreaseRate = 1;
         this.level = level;
         this.xp = xp;
         this.xpToNextLevel = xpToNextLevel;
@@ -56,6 +60,7 @@ public class Raider {
         this.maxHp = maxHp;
         this.attackMin = attackMin;
         this.attackMax = attackMax;
+        computeStatsIncreaseRate();
     }
 
     public int getId() {
@@ -104,6 +109,7 @@ public class Raider {
 
     public void incrementCopy() {
         this.copies++;
+        computeStatsIncreaseRate();
     }
 
     public void incrementXp(int xp) {
@@ -121,25 +127,31 @@ public class Raider {
         this.xpToNextLevel += 10;
         this.xp = 0;
 
-        this.hp += 5;
-        this.maxHp += 5;
 
         switch(this.rarity) {
             case Rarity.COMMON -> {
-                this.attackMin += 1;
-                this.attackMax += 1;
+                this.hp += 5;
+                this.maxHp += 5;
+                this.attackMin = (int) (Math.ceil((this.attackMin + 1) * this.statsIncreaseRate));
+                this.attackMax = attackMin + 5;
             }
             case Rarity.RARE -> {
-                this.attackMin += 2;
-                this.attackMax += 2;
+                this.hp += 6;
+                this.maxHp += 6;
+                this.attackMin = (int) (Math.ceil((this.attackMin + 2) * this.statsIncreaseRate));
+                this.attackMax = attackMin + 5;
             }
             case LEGENDARY -> {
-                this.attackMin += 3;
-                this.attackMax += 3;
+                this.hp += 7;
+                this.maxHp += 7;
+                this.attackMin = (int) (Math.ceil((this.attackMin + 3) * this.statsIncreaseRate));
+                this.attackMax = attackMin + 5;
             }
             case MYTHICAL -> {
-                this.attackMin += 4;
-                this.attackMax += 4;
+                this.hp += 10;
+                this.maxHp += 10;
+                this.attackMin = (int) (Math.ceil((this.attackMin + 4) * this.statsIncreaseRate));
+                this.attackMax = attackMin + 5;
             }
         }
     }
@@ -149,6 +161,15 @@ public class Raider {
             this.hp = 0;
         } else {
             this.hp -= damage;
+        }
+    }
+
+    private void computeStatsIncreaseRate() {
+        switch(this.rarity) {
+            case COMMON -> this.statsIncreaseRate = 1f + ((float)(Math.floor((double) copies / 25) * 0.07));
+            case RARE -> this.statsIncreaseRate = 1f + ((float)(Math.floor((double) copies/ 15) * 0.07));
+            case LEGENDARY -> this.statsIncreaseRate = 1f + ((float)(Math.floor((double) copies / 5) * 0.07));
+            case MYTHICAL -> this.statsIncreaseRate = 1f + ((float)(Math.floor((double) copies / 2) * 0.07));
         }
     }
 

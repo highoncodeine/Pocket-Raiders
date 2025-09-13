@@ -56,13 +56,13 @@ public class Pod {
     public Raider selectRandomRaider() {
         int selector = random.nextInt(1, 101);
 
-        if(selector >= 1 && selector <= 78) {
+        if(selector >= 1 && selector <= 70) {
             // common pull
             return commonRaiders.get(random.nextInt(commonRaiders.size()));
-        } else if(selector >= 79 && selector <= 93) {
+        } else if(selector >= 71 && selector <= 95) {
             // rare pull
             return rareRaiders.get(random.nextInt(rareRaiders.size()));
-        } else if (selector >= 94 && selector <= 98) {
+        } else if (selector >= 96 && selector <= 98) {
             // legendary pull
             return legendaryRaiders.get(random.nextInt(legendaryRaiders.size()));
         } else if (selector == 99 || selector == 100) {
