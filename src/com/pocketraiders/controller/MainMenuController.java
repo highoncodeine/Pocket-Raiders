@@ -5,6 +5,7 @@ import com.pocketraiders.model.Player;
 import com.pocketraiders.model.Raider;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -18,18 +19,26 @@ import javafx.stage.Stage;
 import javafx.event.ActionEvent;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
 
-public class MainMenuController {
+public class MainMenuController implements Initializable {
     private Player player;
     private Stage stage;
+    private Raider[] favoriteRaiders;
+
+    private ImageView[] favoriteRaiderSpriteImgs;
 
     @FXML private Label nameLabel, idLabel, lumenCountLabel, levelLabel, xpToNextLevelLabel, bestRaiderLabel, ownedRaidersLabel, savedNotificationLabel;
     @FXML private ProgressBar xpBar;
-    @FXML private ImageView bestRaiderSpriteImg;
+    @FXML private ImageView bestRaiderSpriteImg, editNameIcon;
+    @FXML private ImageView favoriteRaiderSpriteImg, favoriteRaiderSpriteImg1, favoriteRaiderSpriteImg2;
 
     public void setUp(Player player) {
         this.player = player;
+        this.favoriteRaiders = player.getFavoriteRaiders();
+        setUpFavoriteTeam();
         nameLabel.setText(player.getUsername());
         idLabel.setText("ID: " + player.getId());
         lumenCountLabel.setText("" + player.getLumens());
@@ -37,6 +46,7 @@ public class MainMenuController {
         xpToNextLevelLabel.setText("" + (player.getXpToNextLevel() - player.getXp()));
         ownedRaidersLabel.setText("" + player.getOwnedRaiders().size());
         xpBar.setProgress((double) player.getXp() / player.getXpToNextLevel());
+        editNameIcon.setOnMouseClicked(mouseEvent -> showEditUsernameDialog());
 
         Raider bestRaider = getBestRaider();
         if(bestRaider != null) {
@@ -51,6 +61,14 @@ public class MainMenuController {
 
     public void setStage(Stage stage) {
         this.stage = stage;
+    }
+
+    public void setUpFavoriteTeam() {
+        for(int i = 0; i < 3; i++) {
+            if(favoriteRaiders[i] != null) {
+                favoriteRaiderSpriteImgs[i].setImage(favoriteRaiders[i].getSprite());
+            }
+        }
     }
 
     private Raider getBestRaider() {
@@ -109,7 +127,7 @@ public class MainMenuController {
     }
 
     @FXML
-    public void showEditUsernameDialog(ActionEvent event) throws IOException {
+    public void showEditUsernameDialog(){
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/pocketraiders/view/EditDialog.fxml"));
             Parent root = loader.load();
@@ -160,4 +178,10 @@ public class MainMenuController {
         }
     }
 
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        favoriteRaiderSpriteImgs = new ImageView[] {
+                favoriteRaiderSpriteImg, favoriteRaiderSpriteImg1, favoriteRaiderSpriteImg2
+        };
+    }
 }

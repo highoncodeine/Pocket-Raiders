@@ -13,7 +13,7 @@ public class Player {
     private int currentRaidBossIndex;
     private RaidBoss currentRaidBoss;
     private ArrayList<Raider> ownedRaiders;
-
+    private Raider[] favoriteRaiders;
 
     public Player(int id, String username, String password) {
         this.id = id;
@@ -82,6 +82,8 @@ public class Player {
         return this.currentRaidBossIndex;
     }
 
+    public Raider[] getFavoriteRaiders() { return this.favoriteRaiders; }
+
     public void setUsername(String username) { this.username = username; }
 
     public void setPassword(String password) { this.password = password; }
@@ -100,6 +102,14 @@ public class Player {
 
     public void addLumens(int lumenCount) {
         this.lumens += lumenCount;
+    }
+
+    public void addFavoriteRaider(Raider newRaider) {
+        for(int i = 0; i < 3; i++){
+            if(favoriteRaiders[i] == null) {
+                favoriteRaiders[i] = newRaider;
+            }
+        }
     }
 
     public Raider drawRaider(Pod pod) {
