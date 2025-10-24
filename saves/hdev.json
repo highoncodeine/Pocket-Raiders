@@ -295,5 +295,52 @@
     "lumens": 994159,
     "id": 911,
     "xpToNextLevel": 350,
+    "favoriteRaiders": [
+        {
+            "maxHp": 30,
+            "pod": "Nova",
+            "level": 2,
+            "hp": 30,
+            "attackMax": 7,
+            "xpToNextLevel": 30,
+            "copies": 11,
+            "name": "Radiar T.",
+            "sprite": "/raider-images/radiar_t.png",
+            "xp": 180,
+            "id": 6,
+            "attackMin": 3,
+            "rarity": "RARE"
+        },
+        {
+            "maxHp": 95,
+            "pod": "Nova",
+            "level": 14,
+            "hp": 95,
+            "attackMax": 44,
+            "xpToNextLevel": 150,
+            "copies": 9,
+            "name": "Voidrunner",
+            "sprite": "/raider-images/voidrunner.png",
+            "xp": 60,
+            "id": 7,
+            "attackMin": 40,
+            "rarity": "LEGENDARY"
+        },
+        {
+            "maxHp": 20,
+            "pod": "Null",
+            "level": 1,
+            "hp": 20,
+            "attackMax": 5,
+            "xpToNextLevel": 20,
+            "copies": 25,
+            "name": "Bytebug",
+            "sprite": "/raider-images/bytebug.png",
+            "xp": 0,
+            "id": 11,
+            "attackMin": 1,
+            "rarity": "COMMON"
+        }
+    ],
     "username": "hdev"
 }

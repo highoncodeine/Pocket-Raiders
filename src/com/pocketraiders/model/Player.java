@@ -29,7 +29,7 @@ public class Player {
     }
 
     public Player(int id, String username, String password, int level, int xp, int xpToNextLevel, int lumens,
-                  int currentRaidBossIndex, RaidBoss currentRaidBoss, ArrayList<Raider> ownedRaiders) {
+                  int currentRaidBossIndex, RaidBoss currentRaidBoss, ArrayList<Raider> ownedRaiders, Raider[] favoriteRaiders) {
         this.id = id;
         this.username = username;
         this.password = password;
@@ -40,6 +40,7 @@ public class Player {
         this.currentRaidBossIndex = currentRaidBossIndex;
         this.currentRaidBoss = currentRaidBoss;
         this.ownedRaiders = ownedRaiders;
+        this.favoriteRaiders = favoriteRaiders;
     }
 
     public int getId() {

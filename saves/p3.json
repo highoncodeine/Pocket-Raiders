@@ -1,6 +1,23 @@
 {
     "currentRaidBossIndex": 14,
     "password": "paolajerry",
+    "favoriteRaiders": [
+        {
+            "maxHp": 25,
+            "pod": "Nova",
+            "level": 2,
+            "hp": 25,
+            "attackMax": 8,
+            "xpToNextLevel": 30,
+            "copies": 48,
+            "name": "Staragazer",
+            "sprite": "/raider-images/staragazer.png",
+            "xp": 0,
+            "id": 1,
+            "attackMin": 3,
+            "rarity": "COMMON"
+        }
+    ],
     "ownedRaiders": [
         {
             "maxHp": 25,

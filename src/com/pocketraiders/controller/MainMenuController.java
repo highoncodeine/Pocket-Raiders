@@ -65,6 +65,7 @@ public class MainMenuController implements Initializable {
 
     public void setUpFavoriteTeam() {
         for(int i = 0; i < 3; i++) {
+            favoriteRaiderSpriteImgs[i].setImage(null);
             if(favoriteRaiders[i] != null) {
                 favoriteRaiderSpriteImgs[i].setImage(favoriteRaiders[i].getSprite());
             }
@@ -140,6 +141,32 @@ public class MainMenuController implements Initializable {
             dialogStage.getIcons().add(new Image(getClass().getResourceAsStream("/logo-images/inverted.png")));
             dialogStage.initModality(Modality.APPLICATION_MODAL);
             controller.setup(player, "edit_username", dialogStage);
+
+            Scene scene = new Scene(root);
+            dialogStage.setScene(scene);
+
+            dialogStage.show();
+            dialogStage.setOnHidden(windowEvent -> this.setUp(this.player));
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    public void showSelectFavoriteDialog(ActionEvent event) throws IOException {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/pocketraiders/view/SelectFavoriteDialog.fxml"));
+            Parent root = loader.load();
+
+            SelectFavoriteDialogController controller = loader.getController();
+
+            Stage dialogStage = new Stage();
+            dialogStage.setTitle("Select Favorite Raiders");
+            dialogStage.setResizable(false);
+            dialogStage.getIcons().add(new Image(getClass().getResourceAsStream("/logo-images/inverted.png")));
+            dialogStage.initModality(Modality.APPLICATION_MODAL);
+            controller.setUp(this.player, dialogStage);
 
             Scene scene = new Scene(root);
             dialogStage.setScene(scene);

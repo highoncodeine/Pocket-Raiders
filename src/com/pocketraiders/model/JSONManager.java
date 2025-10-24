@@ -93,6 +93,32 @@ public class JSONManager {
             }
         }
         object.put("ownedRaiders", ownedRaidersArr);
+
+        JSONArray favoriteRaiderArr = new JSONArray();
+        Raider[] favoriteRaiders = player.getFavoriteRaiders();
+        if (favoriteRaiders != null) {
+            for(Raider raider: favoriteRaiders) {
+                if(raider == null) continue;
+
+                JSONObject raiderObj = new JSONObject();
+                raiderObj.put("id", raider.getId());
+                raiderObj.put("name", raider.getName());
+                raiderObj.put("rarity", raider.getRarity());
+                raiderObj.put("pod", raider.getPod());
+                raiderObj.put("sprite", raider.getSpritePath());
+                raiderObj.put("copies", raider.getCopies());
+                raiderObj.put("level", raider.getLevel());
+                raiderObj.put("xp", raider.getXp());
+                raiderObj.put("xpToNextLevel", raider.getXpToNextLevel());
+                raiderObj.put("hp", raider.getHp());
+                raiderObj.put("maxHp", raider.getMaxHp());
+                raiderObj.put("attackMin", raider.getAttackMin());
+                raiderObj.put("attackMax", raider.getAttackMax());
+
+                favoriteRaiderArr.put(raiderObj);
+            }
+        }
+        object.put("favoriteRaiders", favoriteRaiderArr);
     }
 
     public Player loadPlayer(String fileName) {
@@ -174,9 +200,41 @@ public class JSONManager {
                 }
             }
 
+            Raider[] favoriteRaiders = new Raider[3];
+            JSONArray favoriteRaidersArr = jsonObject.optJSONArray("favoriteRaiders");
+            if(favoriteRaiders != null) {
+                for(int i = 0; i < 3; i++) {
+                    if(favoriteRaidersArr.isNull(i)) continue;
+
+                    JSONObject raiderObj = favoriteRaidersArr.getJSONObject(i);
+
+                    int raiderId = raiderObj.getInt("id");
+                    String raiderName = raiderObj.getString("name");
+                    Rarity raiderRarity = Rarity.valueOf(raiderObj.getString("rarity").toUpperCase());
+                    String raiderPod = raiderObj.getString("pod");
+                    String raiderSprite = raiderObj.getString("sprite");
+                    int raiderCopies = raiderObj.getInt("copies");
+                    int raiderLevel = raiderObj.getInt("level");
+                    int raiderXp = raiderObj.getInt("xp");
+                    int raiderXpToNextLevel = raiderObj.getInt("xpToNextLevel");
+                    int raiderHp = raiderObj.getInt("hp");
+                    int raiderMaxHp = raiderObj.getInt("maxHp");
+                    int raiderAttackMin = raiderObj.getInt("attackMin");
+                    int raiderAttackMax = raiderObj.getInt("attackMax");
+
+                    Raider raider = new Raider(
+                            raiderId, raiderName, raiderRarity, raiderPod, raiderSprite,
+                            raiderCopies, raiderLevel, raiderXp, raiderXpToNextLevel,
+                            raiderHp, raiderMaxHp, raiderAttackMin, raiderAttackMax
+                    );
+
+                    favoriteRaiders[i] = raider;
+                }
+            }
+
             return new Player(
                     id, username, password, level, xp, xpToNextLevel, lumens,
-                    currentRaidBossIndex, raidBoss, ownedRaiders
+                    currentRaidBossIndex, raidBoss, ownedRaiders, favoriteRaiders
             );
 
         } catch (IOException e) {
