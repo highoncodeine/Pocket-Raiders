@@ -2,6 +2,7 @@ package com.pocketraiders.controller;
 
 import com.pocketraiders.model.Player;
 import com.pocketraiders.model.Raider;
+import com.pocketraiders.model.Rarity;
 import javafx.animation.ScaleTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -11,6 +12,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -21,12 +23,15 @@ import javafx.util.Duration;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.Map;
 import java.util.ResourceBundle;
 
 public class InventoryController implements Initializable{
     private Player player;
     private ArrayList<Raider> ownedRaiders;
     private Stage stage;
+    private String[] sortLabels = {"Name A-Z", "Name Z-A", "Rarity", "Level"};
 
     private Label[] raiderNameLabels;
     private Label[] raiderExpLevels;
@@ -34,6 +39,12 @@ public class InventoryController implements Initializable{
     private Raider[] raiderSlot;
     private int MAX_PAGE;
     private int currentPage;
+    private static final Map<Rarity, Integer> RARITY_ORDER = Map.of(
+            Rarity.MYTHICAL, 4,
+            Rarity.LEGENDARY, 3,
+            Rarity.RARE, 2,
+            Rarity.COMMON, 1
+    );
 
     @FXML private Button backBtn, previousBtn, nextBtn;
     @FXML private Label raiderNameLabel, raiderNameLabel1, raiderNameLabel2, raiderNameLabel3, raiderNameLabel4, raiderNameLabel5, raiderNameLabel6,
@@ -42,6 +53,7 @@ public class InventoryController implements Initializable{
             raiderExpLevel7, raiderExpLevel8, raiderExpLevel9;
     @FXML private ImageView raiderSpriteImg, raiderSpriteImg1, raiderSpriteImg2, raiderSpriteImg3, raiderSpriteImg4, raiderSpriteImg5, raiderSpriteImg6,
             raiderSpriteImg7, raiderSpriteImg8, raiderSpriteImg9;
+    @FXML private ChoiceBox<String> sortBox;
 
     public void setup(Player player) {
         this.player = player;
@@ -121,6 +133,38 @@ public class InventoryController implements Initializable{
         }
     }
 
+    public void sort(ActionEvent event) {
+        String choice = sortBox.getValue();
+
+        switch(choice) {
+            case "Name A-Z" -> sortByAZ();
+            case "Name Z-A" -> sortByZA();
+            case "Rarity" -> sortByRarity();
+            case "Level" -> sortByLevel();
+            default -> sortByRarity();
+        }
+    }
+
+    private void sortByAZ() {
+        ownedRaiders.sort(Comparator.comparing(Raider::getName));
+        displayRaiders(currentPage);
+    }
+
+    private void sortByZA() {
+        ownedRaiders.sort(Comparator.comparing(Raider::getName).reversed());
+        displayRaiders(currentPage);
+    }
+
+    private void sortByRarity() {
+        ownedRaiders.sort(Comparator.comparingInt((Raider i) -> RARITY_ORDER.get(i.getRarity())).reversed());
+        displayRaiders(currentPage);
+    }
+
+    private void sortByLevel() {
+        ownedRaiders.sort(Comparator.comparingInt(Raider::getLevel).reversed());
+        displayRaiders(currentPage);
+    }
+
     public void switchToMainMenu(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/pocketraiders/view/MainMenu.fxml"));
         Parent root = loader.load();
@@ -173,6 +217,8 @@ public class InventoryController implements Initializable{
                 raiderSpriteImg, raiderSpriteImg1, raiderSpriteImg2, raiderSpriteImg3, raiderSpriteImg4, raiderSpriteImg5, raiderSpriteImg6,
                 raiderSpriteImg7, raiderSpriteImg8, raiderSpriteImg9
         };
+        sortBox.getItems().addAll(sortLabels);
+        sortBox.setOnAction(this::sort);
         raiderSlot = new Raider[10];
     }
 }

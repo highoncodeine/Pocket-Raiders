@@ -8,6 +8,7 @@ import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
 import javafx.application.Platform;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -45,7 +46,7 @@ public class RaidController implements Initializable {
     @FXML private Label turnDeterminerLabel, turnCountLabel, raidBossAttackLabel;
     @FXML private Label hpLabel, hpLabel1, hpLabel2;
     @FXML private ProgressBar raiderHpBar, raiderHpBar1, raiderHpBar2, raidBossHpBar;
-    @FXML private Button stopBtn, stopBtn1, stopBtn2, autoModeBtn;
+    @FXML private Button stopBtn, stopBtn1, stopBtn2, surrenderBtn;
     @FXML private Rectangle raiderRectangle, raiderRectangle1, raiderRectangle2, raidBossRectangle;
     @FXML private ImageView raiderSpriteImg, raiderSpriteImg1, raiderSpriteImg2, raidBossSpriteImg, backgroundImg;
     @FXML private ImageView miniRaiderSpriteImg, miniRaiderSpriteImg1, miniRaiderSpriteImg2, transitionImg;
@@ -305,6 +306,10 @@ public class RaidController implements Initializable {
         } else {
             return;
         }
+    }
+
+    public void surrender(ActionEvent event) {
+        switchToWinMenu(false);
     }
 
     private void animateHpBar(ProgressBar bar, double oldValue, double newValue) {

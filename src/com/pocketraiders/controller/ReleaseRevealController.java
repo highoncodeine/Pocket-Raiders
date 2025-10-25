@@ -13,6 +13,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -26,11 +27,11 @@ public class ReleaseRevealController {
     private PodView podview;
     private Stage stage;
 
-    @FXML private Button releaseAgainBtn, continueBtn, releaseRaiderBtn;
+    @FXML private Button releaseAgainBtn, continueBtn;
     @FXML private Label lumenCountLabel, lumenCostLabel, announcementMainLabel, announcementRarityLabel;
     @FXML private ImageView backgroundImg, spriteImg, indicatorImg;
 
-    public void setUp(Player player, PodView podview) {
+    public void setUp(Player player, PodView podview) throws IOException {
         this.player = player;
         this.podview = podview;
 
@@ -38,7 +39,7 @@ public class ReleaseRevealController {
         announcementRarityLabel.setText("");
         lumenCountLabel.setText("" + player.getLumens());
         backgroundImg.setImage(podview.getBackground());
-        spriteImg.setImage(podview.getPodSprite());
+        releaseRaider(new ActionEvent());
     }
 
     @FXML
@@ -91,7 +92,6 @@ public class ReleaseRevealController {
 
     private void updateUIState() {
         lumenCountLabel.setText("" + player.getLumens());
-        releaseRaiderBtn.setVisible(false);
         releaseAgainBtn.setVisible(true);
         continueBtn.setVisible(true);
         if (this.player.getLumens() < this.podview.getLumenCost()) {

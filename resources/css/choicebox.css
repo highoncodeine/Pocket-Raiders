@@ -1,0 +1,28 @@
+.choice-box {
+    -fx-background-color: #121212;
+    -fx-border-color: #333;
+    -fx-border-radius: 6;
+    -fx-background-radius: 6;
+    -fx-mark-color: white; /* dropdown arrow color */
+    -fx-font-family: "Segoe UI Semilight";
+    -fx-font-size: 14px;
+    -fx-cursor: hand; /* 👈 change cursor to hand */
+}
+
+.choice-box .label {
+    -fx-text-fill: white;
+}
+
+.context-menu {
+    -fx-background-color: #121212;
+    -fx-font-family: "Segoe UI Semilight";
+}
+
+.menu-item > .label {
+    -fx-text-fill: white;
+}
+
+.menu-item:focused {
+    -fx-background-color: #333;
+    -fx-cursor: hand; /* 👈 hand cursor for dropdown items */
+}

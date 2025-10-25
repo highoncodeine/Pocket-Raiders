@@ -57,6 +57,9 @@ public class SelectRaidersController implements Initializable {
 
         setUpRaidBoss(player);
 
+        previousBtn.setDisable(true);
+        startRaidBtn.setDisable(true);
+
         this.MAX_PAGE = (int) Math.ceil((double) player.getOwnedRaiders().size() / 6);
         this.currentPage = 1;
 
@@ -64,8 +67,10 @@ public class SelectRaidersController implements Initializable {
             nextBtn.setDisable(true);
         }
 
-        previousBtn.setDisable(true);
-        startRaidBtn.setDisable(true);
+        selectedRaiders = player.getFavoriteRaiders();
+        updateSelectedRaiderImages();
+        updateRaiderRectangles();
+        checkSelectedRaider();
 
         displayRaiders(1);
     }

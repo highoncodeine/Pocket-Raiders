@@ -146,9 +146,9 @@
          </effect>
       </Label>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#a1b9d0" height="158.0" layoutX="33.0" layoutY="543.0" opacity="0.41" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="193.0" />
-      <Button fx:id="autoModeBtn" layoutX="1113.0" layoutY="27.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="122.0" style="-fx-background-color: #a8fc00; -fx-border-color: #0ef854; -fx-border-width: 2px;" stylesheets="@/css/button.css" text="AUTOMODE">
+      <Button fx:id="surrenderBtn" layoutX="1113.0" layoutY="27.0" mnemonicParsing="false" onAction="#surrender" prefHeight="32.0" prefWidth="122.0" style="-fx-background-color: #a8fc00; -fx-border-color: #0ef854; -fx-border-width: 2px;" stylesheets="@/css/button.css" text="SURRENDER">
          <font>
-            <Font name="Segoe UI Black" size="16.0" />
+            <Font name="Segoe UI Black" size="14.0" />
          </font>
          <cursor>
             <Cursor fx:constant="HAND" />

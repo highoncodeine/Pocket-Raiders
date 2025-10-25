@@ -18,7 +18,7 @@
          </image>
       </ImageView>
       <Rectangle arcHeight="5.0" arcWidth="5.0" height="30.0" layoutX="1035.0" layoutY="47.0" opacity="0.35" stroke="BLACK" strokeType="INSIDE" style="-fx-arc-width: 25; -fx-arc-height: 25;" width="200.0" />
-      <Button fx:id="selectBtn" layoutX="670.0" layoutY="551.0" mnemonicParsing="false" onAction="#switchToReleaseReveal" prefWidth="200.0" style="-fx-background-color: #a8fc00; -fx-border-color: #0ef854; -fx-border-width: 2px;" stylesheets="@/css/button.css" text="SELECT POD">
+      <Button fx:id="selectBtn" layoutX="670.0" layoutY="551.0" mnemonicParsing="false" onAction="#switchToReleaseReveal" prefWidth="200.0" style="-fx-background-color: #a8fc00; -fx-border-color: #0ef854; -fx-border-width: 2px;" stylesheets="@/css/button.css" text="RELEASE">
          <font>
             <Font name="Segoe UI Black" size="23.0" />
          </font>
