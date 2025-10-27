@@ -9,8 +9,8 @@ public class RaidBoss {
     private String name;
     private Rarity rarity;
     private String pod;
-    private Image sprite;
-    private String spritePath;
+    private transient Image sprite;
+    private transient String spritePath;
     private int hp;
     private int maxHp;
     private int attackMin;
@@ -62,6 +62,25 @@ public class RaidBoss {
         this.copiesReward = copiesReward;
         createRaiderCopy(copy);
         this.lumenPity = lumenPity;
+    }
+
+    public RaidBoss(int id, String name, Rarity rarity, int hp, String pod, int attackMin, int attackMax, int lumenReward,
+                    int xpReward, int playerXpReward, int copiesReward) {
+        this.id = id;
+        this.name = name;
+        this.rarity = rarity;
+        this.pod = pod;
+        this.spritePath = null;
+        this.sprite = null;
+        this.hp = hp;
+        this.maxHp = hp;
+        this.attackMin = attackMin;
+        this.attackMax = attackMax;
+        this.lumenReward = lumenReward;
+        this.xpReward = xpReward;
+        this.playerXpReward = playerXpReward;
+        this.copiesReward = copiesReward;
+        this.lumenPity = 300;
     }
 
     private void createRaiderCopy(String spritePath) {
@@ -137,6 +156,12 @@ public class RaidBoss {
         return this.copy;
     }
 
+    public void setImage(String spritePath) {
+        createRaiderCopy(spritePath);
+        this.spritePath = spritePath;
+        this.sprite = new Image(getClass().getResourceAsStream(spritePath));
+    }
+
     public void takeDamage(int damage) {
         if(this.hp - damage <= 0) {
             this.hp = 0;
@@ -147,6 +172,13 @@ public class RaidBoss {
 
     public int generateAttack() {
         return random.nextInt(this.attackMin, this.attackMax + 1);
+    }
+
+    public void scale(int level) {
+        this.maxHp = (int) Math.round(maxHp * (1 + 0.2 * (level - 1)));
+        this.hp = (int) Math.round(hp * (1 + 0.2 * (level - 1)));
+        this.attackMin = (int) Math.round(attackMin + 2.0 * (level - 1));
+        this.attackMax = (int) Math.round(attackMax + 2.0 * (level - 1));
     }
 
 }

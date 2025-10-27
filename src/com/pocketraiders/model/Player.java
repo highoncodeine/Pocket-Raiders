@@ -26,6 +26,7 @@ public class Player {
         this.lumens = 300;
         this.currentRaidBoss = null;
         this.currentRaidBossIndex = 0;
+        this.favoriteRaiders = new Raider[3];
     }
 
     public Player(int id, String username, String password, int level, int xp, int xpToNextLevel, int lumens,
@@ -170,7 +171,7 @@ public class Player {
     }
 
     public void incrementRaidBossIndex() {
-        this.currentRaidBossIndex += 1;
+        this.currentRaidBossIndex++;
     }
 
 }

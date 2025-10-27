@@ -3,10 +3,7 @@ package com.pocketraiders.controller;
 import com.pocketraiders.model.Player;
 import com.pocketraiders.model.RaidBoss;
 import com.pocketraiders.model.Raider;
-import javafx.animation.FadeTransition;
-import javafx.animation.KeyFrame;
-import javafx.animation.KeyValue;
-import javafx.animation.Timeline;
+import javafx.animation.*;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -65,7 +62,7 @@ public class RaidController implements Initializable {
     private ImageView[] miniRaiderSpriteImgs;
 
     public void setUp(Player player, Raider[] selectedRaiders, RaidBoss raidBoss, Stage stage) {
-        transition();
+        introTransition();
         this.stage = stage;
         this.player = player;
         this.selectedRaiders = selectedRaiders;
@@ -159,6 +156,7 @@ public class RaidController implements Initializable {
                 timeline.play();
             }
         }
+        turnCountLabel.setText("TURN " + this.turnCount);
     }
 
     private void attackRaidBoss(Raider selected, int attack) {
@@ -300,16 +298,16 @@ public class RaidController implements Initializable {
         }
 
         if(deadRaiders == 3) {
-            switchToWinMenu(false);
+            playWinTransition(false);
         } else if(this.raidBoss.getHp() == 0) {
-            switchToWinMenu(true);
+            playWinTransition(true);
         } else {
             return;
         }
     }
 
     public void surrender(ActionEvent event) {
-        switchToWinMenu(false);
+        playWinTransition(false);
     }
 
     private void animateHpBar(ProgressBar bar, double oldValue, double newValue) {
@@ -322,13 +320,39 @@ public class RaidController implements Initializable {
         timeline.play();
     }
 
-    private void transition() {
+    private void introTransition() {
         FadeTransition fade = new FadeTransition(Duration.seconds(3), this.transitionImg);
         fade.setFromValue(1.0);
         fade.setToValue(0.0);
         fade.setDelay(Duration.seconds(3));
         fade.setOnFinished(e -> transitionImg.setVisible(false));
         fade.play();
+    }
+
+    private void playWinTransition(boolean raidersWin) {
+        String imagePath = raidersWin
+                ? "/bg-images/raiderswintransition.png"
+                : "/bg-images/raiderslosetransition.png";
+
+        Image img = new Image(getClass().getResourceAsStream(imagePath));
+        transitionImg.setImage(img);
+        transitionImg.setOpacity(0.0);
+        transitionImg.setVisible(true);
+        transitionImg.toFront();
+
+        // Fade in quickly
+        FadeTransition fadeIn = new FadeTransition(Duration.seconds(1), transitionImg);
+        fadeIn.setFromValue(0.0);
+        fadeIn.setToValue(1.0);
+
+        // When fade in completes, wait 2 seconds before switching
+        fadeIn.setOnFinished(e -> {
+            PauseTransition hold = new PauseTransition(Duration.seconds(2));
+            hold.setOnFinished(ev -> switchToWinMenu(raidersWin));
+            hold.play();
+        });
+
+        fadeIn.play();
     }
 
 

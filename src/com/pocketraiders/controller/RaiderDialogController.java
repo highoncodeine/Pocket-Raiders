@@ -9,18 +9,18 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
+
+import java.util.Locale;
 
 public class RaiderDialogController {
     private Player player;
     private Raider raider;
 
     @FXML private Label raiderNameLabel, raiderLevelLabel, raiderMinLabel, raiderMaxLabel, raiderSpecialAbilityLabel, raiderHpLabel,
-            raiderCopiesLabel, raiderXpToNextLevelLabel, lumenBonusLabel;
+            raiderCopiesLabel, raiderXpToNextLevelLabel, lumenBonusLabel, idLabel, podLabel, rarityLabel;
     @FXML private ProgressBar raiderXpBar;
     @FXML private ImageView raiderSpriteImg, raiderBackgroundImg, lumenBonusImg;
-    @FXML private Rectangle rarityRectangle;
 
 
     public void setUp(Player player, Raider raider) {
@@ -51,12 +51,12 @@ public class RaiderDialogController {
         }
     }
 
-    private void setUpRarityRectangle(Rarity rarity) {
+    private void setUpRarityLabel(Rarity rarity) {
         switch(rarity) {
-            case Rarity.COMMON -> rarityRectangle.setStyle("-fx-text-fill: #FFFFFFFF");
-            case Rarity.RARE -> rarityRectangle.setStyle("-fx-text-fill: #0033ff");
-            case Rarity.LEGENDARY -> rarityRectangle.setStyle("-fx-fill: #eeff00");
-            case Rarity.MYTHICAL -> rarityRectangle.setStyle("-fx-fill: #ff0000");
+            case Rarity.COMMON -> rarityLabel.setText("COMMON");
+            case Rarity.RARE -> rarityLabel.setText("RARE");
+            case Rarity.LEGENDARY -> rarityLabel.setText("LEGENDARY");
+            case Rarity.MYTHICAL -> rarityLabel.setText("MYTHICAL");
         }
     }
 
@@ -91,6 +91,8 @@ public class RaiderDialogController {
     private void updateUI() {
         raiderNameLabel.setText(raider.getName());
         raiderLevelLabel.setText("Level: " + raider.getLevel());
+        idLabel.setText("0" + raider.getId());
+        podLabel.setText(raider.getPod().toUpperCase(Locale.ROOT) + " POD");
         raiderCopiesLabel.setText("" + raider.getCopies());
         raiderHpLabel.setText("HP: " + raider.getHp());
         raiderMinLabel.setText("MIN ATTACK DAMAGE: " + raider.getAttackMin());
@@ -98,7 +100,7 @@ public class RaiderDialogController {
         raiderSpecialAbilityLabel.setText("SPECIAL ABILITY: NONE");
         raiderSpriteImg.setImage(raider.getSprite());
         setUpBackground(raider.getPod());
-        setUpRarityRectangle(raider.getRarity());
+        setUpRarityLabel(raider.getRarity());
     }
 
 }

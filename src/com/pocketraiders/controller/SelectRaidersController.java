@@ -32,7 +32,7 @@ public class SelectRaidersController implements Initializable {
     private Raider[] selectedRaiders;
     private ArrayList<RaidBoss> raidBosses;
     private RaidBoss currentRaidBoss;
-    private int currentRaidBossIndex;
+    private ArrayList<String> spritePaths;
     private Stage stage;
 
     private Label[] raiderNameLabels;
@@ -55,6 +55,7 @@ public class SelectRaidersController implements Initializable {
         this.player = player;
         this.ownedRaiders = player.getOwnedRaiders();
 
+        prepareRaidBossData();
         setUpRaidBoss(player);
 
         previousBtn.setDisable(true);
@@ -247,6 +248,8 @@ public class SelectRaidersController implements Initializable {
         stageLevelLabel.setText("LEVEL: " + player.getLevel());
         if(player.getCurrentRaidBoss() == null) {
             player.setCurrentRaidBoss(raidBosses.get(player.getCurrentRaidBossIndex()));
+            player.getCurrentRaidBoss().setImage(spritePaths.get(player.getCurrentRaidBossIndex()));
+            player.getCurrentRaidBoss().scale(this.player.getLevel());
             this.currentRaidBoss = player.getCurrentRaidBoss();
         } else {
             this.currentRaidBoss = player.getCurrentRaidBoss();
@@ -254,6 +257,52 @@ public class SelectRaidersController implements Initializable {
         raidBossSprite.setImage(player.getCurrentRaidBoss().getSprite());
         raidBossLabel.setText("" + player.getCurrentRaidBoss().getName().toUpperCase(Locale.ROOT) + " | HP " +
                 player.getCurrentRaidBoss().getHp());
+    }
+
+    private void prepareRaidBossData() {
+        spritePaths = new ArrayList<>();
+        spritePaths.add("/raider-images/staragazer.png");
+        spritePaths.add("/raider-images/nebula.png");
+        spritePaths.add("/raider-images/hubble.png");
+        spritePaths.add("/raider-images/pluto.png");
+        spritePaths.add("/raider-images/orion.png");
+        spritePaths.add("/raider-images/radiar_t.png");
+        spritePaths.add("/raider-images/voidrunner.png");
+        spritePaths.add("/raider-images/aetherion.png");
+        spritePaths.add("/raider-images/supernova.png");
+        spritePaths.add("/raider-images/aetherion_prime.png");
+        spritePaths.add("/raider-images/bytebug.png");
+        spritePaths.add("/raider-images/firewall.png");
+        spritePaths.add("/raider-images/packet_tracer.png");
+        spritePaths.add("/raider-images/staragazer.png");
+        spritePaths.add("/raider-images/staragazer.png");
+        spritePaths.add("/raider-images/seer.png");
+        spritePaths.add("/raider-images/staragazer.png");
+        spritePaths.add("/raider-images/staragazer.png");
+        spritePaths.add("/raider-images/staragazer.png");
+        spritePaths.add("/raider-images/staragazer.png");
+
+        raidBosses = new ArrayList<>();
+        raidBosses.add(new CommonRaidBoss(1, "Staragazer", "Nova"));
+        raidBosses.add(new CommonRaidBoss(2, "Nebula", "Nova"));
+        raidBosses.add(new CommonRaidBoss(3, "Hubble", "Nova"));
+        raidBosses.add(new RareRaidBoss(4, "Pluto", "Nova"));
+        raidBosses.add(new RareRaidBoss(5, "Orion", "Nova"));
+        raidBosses.add(new RareRaidBoss(6, "Radiar T.", "Nova"));
+        raidBosses.add(new LegendaryRaidBoss(7, "Voidrunner", "Nova"));
+        raidBosses.add(new LegendaryRaidBoss(8, "Aetherion", "Nova"));
+        raidBosses.add(new MythicalRaidBoss(9, "Supernova", "Nova"));
+        raidBosses.add(new MythicalRaidBoss(10, "Aetherion Prime", "Nova"));
+        raidBosses.add(new CommonRaidBoss(11, "Bytebug", "Null"));
+        raidBosses.add(new CommonRaidBoss(12, "Firewall", "Null"));
+        raidBosses.add(new RareRaidBoss(13, "Packet Tracer", "Null"));
+        raidBosses.add(new RareRaidBoss(14, "Scripython", "Null"));
+        raidBosses.add(new RareRaidBoss(15, "Rabbit", "Null"));
+        raidBosses.add(new RareRaidBoss(16, "Seer", "Null"));
+        raidBosses.add(new LegendaryRaidBoss(17, "Overclocke", "Null"));
+        raidBosses.add(new LegendaryRaidBoss(18, "Cipherstorm", "Null"));
+        raidBosses.add(new MythicalRaidBoss(19, "WannaCry1", "Null"));
+        raidBosses.add(new MythicalRaidBoss(20, "[REDACTED]", "Null"));
     }
 
 
@@ -307,7 +356,6 @@ public class SelectRaidersController implements Initializable {
         }
     }
 
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         raiderNameLabels = new Label[] {
@@ -322,27 +370,6 @@ public class SelectRaidersController implements Initializable {
         raiderRectangles = new Rectangle[] {
                 raiderRectangle ,raiderRectangle1, raiderRectangle2, raiderRectangle3, raiderRectangle4, raiderRectangle5
         };
-        raidBosses = new ArrayList<>();
-        raidBosses.add(new CommonRaidBoss(1, "Staragazer", "Nova", "/raider-images/staragazer.png"));
-        raidBosses.add(new CommonRaidBoss(2, "Nebula", "Nova", "/raider-images/nebula.png"));
-        raidBosses.add(new CommonRaidBoss(3, "Hubble", "Nova", "/raider-images/hubble.png"));
-        raidBosses.add(new RareRaidBoss(4, "Pluto", "Nova", "/raider-images/pluto.png"));
-        raidBosses.add(new RareRaidBoss(5, "Orion", "Nova", "/raider-images/orion.png"));
-        raidBosses.add(new RareRaidBoss(6, "Radiar T.", "Nova", "/raider-images/radiar_t.png"));
-        raidBosses.add(new LegendaryRaidBoss(7, "Voidrunner", "Nova", "/raider-images/voidrunner.png"));
-        raidBosses.add(new LegendaryRaidBoss(8, "Aetherion", "Nova", "/raider-images/aetherion.png"));
-        raidBosses.add(new MythicalRaidBoss(9, "Supernova", "Nova", "/raider-images/supernova.png"));
-        raidBosses.add(new MythicalRaidBoss(10, "Aetherion Prime", "Nova", "/raider-images/aetherion_prime.png"));
-        raidBosses.add(new CommonRaidBoss(11, "Bytebug", "Null", "/raider-images/bytebug.png"));
-        raidBosses.add(new CommonRaidBoss(12, "Firewall", "Null", "/raider-images/firewall.png"));
-        raidBosses.add(new RareRaidBoss(13, "Packet Tracer", "Null", "/raider-images/packet_tracer.png"));
-        raidBosses.add(new RareRaidBoss(14, "Scripython", "Null", "/raider-images/staragazer.png"));
-        raidBosses.add(new RareRaidBoss(15, "Rabbit", "Null", "/raider-images/staragazer.png"));
-        raidBosses.add(new RareRaidBoss(16, "Seer", "Null", "/raider-images/seer.png"));
-        raidBosses.add(new LegendaryRaidBoss(17, "Overclocke", "Null", "/raider-images/staragazer.png"));
-        raidBosses.add(new LegendaryRaidBoss(18, "Cipherstorm", "Null", "/raider-images/staragazer.png"));
-        raidBosses.add(new MythicalRaidBoss(19, "WannaCry1", "Null", "/raider-images/staragazer.png"));
-        raidBosses.add(new MythicalRaidBoss(20, "[REDACTED]", "Null", "/raider-images/staragazer.png"));
 
         raiderSlot = new Raider[6];
         selectedRaiders = new Raider[3];
