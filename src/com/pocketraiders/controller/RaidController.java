@@ -1,5 +1,6 @@
 package com.pocketraiders.controller;
 
+import com.pocketraiders.model.AudioManager;
 import com.pocketraiders.model.Player;
 import com.pocketraiders.model.RaidBoss;
 import com.pocketraiders.model.Raider;
@@ -62,6 +63,7 @@ public class RaidController implements Initializable {
     private ImageView[] miniRaiderSpriteImgs;
 
     public void setUp(Player player, Raider[] selectedRaiders, RaidBoss raidBoss, Stage stage) {
+        AudioManager.stopBackgroundMusic();
         introTransition();
         this.stage = stage;
         this.player = player;
@@ -71,8 +73,10 @@ public class RaidController implements Initializable {
         setUpRaidBoss(raidBoss);
         if(raidBoss.getPod().equals("Nova")) {
             this.backgroundImg.setImage(new Image(getClass().getResourceAsStream("/bg-images/novapodmenu.png")));
+            AudioManager.playNovaBgMusic();
         } else if (raidBoss.getPod().equals("Null")) {
             this.backgroundImg.setImage(new Image(getClass().getResourceAsStream("/bg-images/nullpodmenu.png")));
+            AudioManager.playNullBgMusic();
         }
 
         startRaidersTurn();
@@ -139,11 +143,13 @@ public class RaidController implements Initializable {
                 timeline.setCycleCount(Timeline.INDEFINITE);
 
                 selectedBtn.setOnAction(e -> {
+                    AudioManager.play("click");
                     timeline.stop();
                     int attack = selected.generateAttack();
                     selectedAttack.setText(String.valueOf(attack));
                     selectedBtn.setDisable(true);
                     if(selected.getAttackMax() == attack) {
+                        AudioManager.play("raider-max");
                         selectedMax.setVisible(true);
                         overAllAttack += attack;
                         maxAttack++;
@@ -217,6 +223,7 @@ public class RaidController implements Initializable {
             int attack = raidBoss.generateAttack();
             raidBossAttackLabel.setText(String.valueOf(attack));
             if(attack == raidBoss.getAttackMax()) {
+                AudioManager.play("raidboss-max");
                 bossMaxLabel.setVisible(true);
             }
             attackRaider(targetRaider, attack);
@@ -243,6 +250,7 @@ public class RaidController implements Initializable {
         target.takeDamage(attack);
         updateHp();
         if(target.getHp() == 0) {
+            AudioManager.play("raider-death");
             setDead(target);
         }
     }
@@ -307,6 +315,7 @@ public class RaidController implements Initializable {
     }
 
     public void surrender(ActionEvent event) {
+        AudioManager.play("click");
         playWinTransition(false);
     }
 

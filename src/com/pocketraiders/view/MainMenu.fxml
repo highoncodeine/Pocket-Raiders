@@ -147,30 +147,30 @@
          </font>
       </Label>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#9e8e8e" height="93.0" layoutX="639.0" layoutY="474.0" opacity="0.4" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="93.0" />
-      <ImageView fx:id="favoriteRaiderSpriteImg" fitHeight="93.0" fitWidth="109.0" layoutX="639.0" layoutY="474.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="favoriteRaiderSpriteImg" fitHeight="112.0" fitWidth="116.0" layoutX="630.0" layoutY="466.0" pickOnBounds="true" preserveRatio="true">
          <cursor>
             <Cursor fx:constant="DEFAULT" />
          </cursor>
          <image>
-            <Image url="@/raider-images/aetherion.png" />
+            <Image url="@../../../../resources/raider-images/aetherion.png" />
          </image>
       </ImageView>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#9e8e8e" height="93.0" layoutX="753.0" layoutY="475.0" opacity="0.4" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="93.0" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#9e8e8e" height="93.0" layoutX="867.0" layoutY="474.0" opacity="0.4" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="93.0" />
-      <ImageView fx:id="favoriteRaiderSpriteImg2" fitHeight="93.0" fitWidth="109.0" layoutX="867.0" layoutY="475.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="favoriteRaiderSpriteImg2" fitHeight="112.0" fitWidth="112.0" layoutX="858.0" layoutY="466.0" pickOnBounds="true" preserveRatio="true">
          <cursor>
             <Cursor fx:constant="DEFAULT" />
          </cursor>
          <image>
-            <Image url="@/raider-images/radiar_t.png" />
+            <Image url="@../../../../resources/raider-images/radiar_t.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="favoriteRaiderSpriteImg1" fitHeight="93.0" fitWidth="109.0" layoutX="753.0" layoutY="474.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="favoriteRaiderSpriteImg1" fitHeight="112.0" fitWidth="112.0" layoutX="743.0" layoutY="466.0" pickOnBounds="true" preserveRatio="true">
          <cursor>
             <Cursor fx:constant="DEFAULT" />
          </cursor>
          <image>
-            <Image url="@/raider-images/aetherion_prime.png" />
+            <Image url="@../../../../resources/raider-images/firewall.png" />
          </image>
       </ImageView>
       <Button fx:id="editTeamBtn" layoutX="976.0" layoutY="495.0" mnemonicParsing="false" onAction="#showSelectFavoriteDialog" prefHeight="41.0" prefWidth="167.0" style="-fx-background-color: #000000; -fx-border-color: #FFFFFF; -fx-border-width: 2px;" stylesheets="@/css/button.css" text="EDIT TEAM" textFill="#bfbfbf">

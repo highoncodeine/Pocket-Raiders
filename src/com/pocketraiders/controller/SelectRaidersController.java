@@ -30,6 +30,7 @@ public class SelectRaidersController implements Initializable {
     private Player player;
     private ArrayList<Raider> ownedRaiders;
     private Raider[] selectedRaiders;
+    private Raider[] favoriteRaiders;
     private ArrayList<RaidBoss> raidBosses;
     private RaidBoss currentRaidBoss;
     private ArrayList<String> spritePaths;
@@ -54,6 +55,7 @@ public class SelectRaidersController implements Initializable {
         this.stage = stage;
         this.player = player;
         this.ownedRaiders = player.getOwnedRaiders();
+        this.favoriteRaiders = player.getFavoriteRaiders();
 
         prepareRaidBossData();
         setUpRaidBoss(player);
@@ -68,7 +70,12 @@ public class SelectRaidersController implements Initializable {
             nextBtn.setDisable(true);
         }
 
-        selectedRaiders = player.getFavoriteRaiders();
+        for(int i = 0; i < 3; i++) {
+            if(favoriteRaiders[i] != null) {
+                selectedRaiders[i] = favoriteRaiders[i];
+            }
+        }
+
         updateSelectedRaiderImages();
         updateRaiderRectangles();
         checkSelectedRaider();
@@ -132,6 +139,7 @@ public class SelectRaidersController implements Initializable {
     }
 
     public void nextPage(ActionEvent event) throws IOException {
+        AudioManager.play("click");
         if (currentPage < MAX_PAGE) {
             currentPage++;
             displayRaiders(currentPage);
@@ -140,6 +148,7 @@ public class SelectRaidersController implements Initializable {
     }
 
     public void previousPage(ActionEvent event) throws IOException {
+        AudioManager.play("click");
         if (currentPage > 1) {
             currentPage--;
             displayRaiders(currentPage);
@@ -159,6 +168,7 @@ public class SelectRaidersController implements Initializable {
     }
 
     private void unselectRaider(Raider raider) {
+        AudioManager.play("click");
         for (int i = 0; i < selectedRaiders.length; i++) {
             if(selectedRaiders[i] != null) {
                 if (selectedRaiders[i].getId() == raider.getId()) {
@@ -183,11 +193,13 @@ public class SelectRaidersController implements Initializable {
 
     private void clickAction(Raider raider) {
         if(isAlreadySelected(raider)) {
+            AudioManager.play("click");
             unselectRaider(raider);
             checkSelectedRaider();
         } else if(selectedRaiders[0] != null && selectedRaiders[1] != null && selectedRaiders[2] != null) {
             return;
         } else {
+            AudioManager.play("click");
             selectRaider(raider);
             checkSelectedRaider();
         }
@@ -205,6 +217,7 @@ public class SelectRaidersController implements Initializable {
                 slots[i].setImage(selectedRaiders[i].getSprite());
                 slots[i].setOnMouseClicked(mouseEvent -> {
                    unselectRaider(raider);
+                   checkSelectedRaider();
                 });
             } else {
                 slots[i].setImage(null);
@@ -307,6 +320,7 @@ public class SelectRaidersController implements Initializable {
 
 
     public void switchToMainMenu(ActionEvent event) throws IOException {
+        AudioManager.play("click");
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/pocketraiders/view/MainMenu.fxml"));
         Parent root = loader.load();
         MainMenuController controller = loader.getController();
@@ -318,6 +332,7 @@ public class SelectRaidersController implements Initializable {
     }
 
     public void switchToRaid(ActionEvent event) throws IOException {
+        AudioManager.play("click");
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/pocketraiders/view/Raid.fxml"));
         Parent root = loader.load();
         RaidController controller = loader.getController();
@@ -329,6 +344,7 @@ public class SelectRaidersController implements Initializable {
     }
 
     public void showRaiderDialog(Raider raider) {
+        AudioManager.play("click");
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/pocketraiders/view/RaiderDialog.fxml"));
             Parent root = loader.load();
@@ -337,7 +353,7 @@ public class SelectRaidersController implements Initializable {
             controller.setUp(this.player, raider);
 
             Stage dialogStage = new Stage();
-            dialogStage.setTitle("Raider - " + raider.getName());
+            dialogStage.setTitle(raider.getId() + " - " + raider.getName().toUpperCase(Locale.ROOT));
             dialogStage.setResizable(false);
             dialogStage.getIcons().add(new Image(getClass().getResourceAsStream("/logo-images/inverted.png")));
             dialogStage.initModality(Modality.APPLICATION_MODAL);

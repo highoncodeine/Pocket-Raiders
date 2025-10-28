@@ -1,5 +1,6 @@
 package com.pocketraiders.controller;
 
+import com.pocketraiders.model.AudioManager;
 import com.pocketraiders.model.Player;
 import com.pocketraiders.model.Raider;
 import com.pocketraiders.model.Rarity;
@@ -22,10 +23,7 @@ import javafx.util.Duration;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.Map;
-import java.util.ResourceBundle;
+import java.util.*;
 
 public class InventoryController implements Initializable{
     private Player player;
@@ -120,6 +118,7 @@ public class InventoryController implements Initializable{
     }
 
     public void nextPage(ActionEvent event) throws IOException {
+        AudioManager.play("click");
         if (currentPage < MAX_PAGE) {
             currentPage++;
             displayRaiders(currentPage);
@@ -127,6 +126,7 @@ public class InventoryController implements Initializable{
     }
 
     public void previousPage(ActionEvent event) throws IOException {
+        AudioManager.play("click");
         if (currentPage > 1) {
             currentPage--;
             displayRaiders(currentPage);
@@ -166,6 +166,7 @@ public class InventoryController implements Initializable{
     }
 
     public void switchToMainMenu(ActionEvent event) throws IOException {
+        AudioManager.play("click");
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/pocketraiders/view/MainMenu.fxml"));
         Parent root = loader.load();
         MainMenuController controller = loader.getController();
@@ -177,6 +178,7 @@ public class InventoryController implements Initializable{
     }
 
     public void showRaiderDialog(Raider raider) {
+        AudioManager.play("click");
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/pocketraiders/view/RaiderDialog.fxml"));
             Parent root = loader.load();
@@ -185,7 +187,7 @@ public class InventoryController implements Initializable{
             controller.setUp(this.player, raider);
 
             Stage dialogStage = new Stage();
-            dialogStage.setTitle("Raider - " + raider.getName());
+            dialogStage.setTitle(raider.getId() + " - " + raider.getName().toUpperCase(Locale.ROOT));
             dialogStage.setResizable(false);
             dialogStage.getIcons().add(new Image(getClass().getResourceAsStream("/logo-images/inverted.png")));
             dialogStage.initModality(Modality.APPLICATION_MODAL);

@@ -192,7 +192,7 @@
             <Font name="Segoe UI Black" size="14.0" />
          </font>
       </Label>
-      <ImageView fx:id="selectedRaiderImg" fitHeight="74.0" fitWidth="79.0" layoutX="77.0" layoutY="625.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="selectedRaiderImg" fitHeight="95.0" fitWidth="96.0" layoutX="66.0" layoutY="615.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../../resources/raider-images/radiar_t.png" />
          </image>
@@ -200,7 +200,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </ImageView>
-      <ImageView fx:id="selectedRaiderImg1" fitHeight="74.0" fitWidth="79.0" layoutX="183.0" layoutY="625.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="selectedRaiderImg1" fitHeight="95.0" fitWidth="95.0" layoutX="172.0" layoutY="615.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../../resources/raider-images/radiar_t.png" />
          </image>
@@ -208,7 +208,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </ImageView>
-      <ImageView fx:id="selectedRaiderImg2" fitHeight="74.0" fitWidth="79.0" layoutX="291.0" layoutY="625.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="selectedRaiderImg2" fitHeight="95.0" fitWidth="95.0" layoutX="280.0" layoutY="615.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../../resources/raider-images/radiar_t.png" />
          </image>

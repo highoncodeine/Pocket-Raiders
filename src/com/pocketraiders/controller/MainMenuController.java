@@ -1,5 +1,6 @@
 package com.pocketraiders.controller;
 
+import com.pocketraiders.model.AudioManager;
 import com.pocketraiders.model.JSONManager;
 import com.pocketraiders.model.Player;
 import com.pocketraiders.model.Raider;
@@ -86,6 +87,7 @@ public class MainMenuController implements Initializable {
     }
 
     public void save(ActionEvent event) throws IOException {
+        AudioManager.play("click");
         JSONManager json = new JSONManager(this.player);
         json.save();
         savedNotificationLabel.setVisible(true);
@@ -93,6 +95,7 @@ public class MainMenuController implements Initializable {
 
     @FXML
     public void switchToReleaseZone(ActionEvent event) throws IOException {
+        AudioManager.play("click");
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/pocketraiders/view/ReleaseZone.fxml"));
         Parent root = loader.load();
         ReleaseZoneController controller = loader.getController();
@@ -105,6 +108,7 @@ public class MainMenuController implements Initializable {
 
     @FXML
     public void switchToInventory(ActionEvent event) throws IOException {
+        AudioManager.play("click");
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/pocketraiders/view/Inventory.fxml"));
         Parent root = loader.load();
         InventoryController controller = loader.getController();
@@ -117,6 +121,7 @@ public class MainMenuController implements Initializable {
 
     @FXML
     public void switchToSelectRaiders(ActionEvent event) throws IOException {
+        AudioManager.play("click");
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/pocketraiders/view/SelectRaiders.fxml"));
         Parent root = loader.load();
         SelectRaidersController controller = loader.getController();
@@ -129,6 +134,7 @@ public class MainMenuController implements Initializable {
 
     @FXML
     public void showEditUsernameDialog(){
+        AudioManager.play("click");
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/pocketraiders/view/EditDialog.fxml"));
             Parent root = loader.load();
@@ -136,7 +142,7 @@ public class MainMenuController implements Initializable {
             EditDialogController controller = loader.getController();
 
             Stage dialogStage = new Stage();
-            dialogStage.setTitle("Change Username");
+            dialogStage.setTitle("EDIT USERNAME");
             dialogStage.setResizable(false);
             dialogStage.getIcons().add(new Image(getClass().getResourceAsStream("/logo-images/inverted.png")));
             dialogStage.initModality(Modality.APPLICATION_MODAL);
@@ -155,6 +161,7 @@ public class MainMenuController implements Initializable {
 
     @FXML
     public void showSelectFavoriteDialog(ActionEvent event) throws IOException {
+        AudioManager.play("click");
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/pocketraiders/view/SelectFavoriteDialog.fxml"));
             Parent root = loader.load();
@@ -162,7 +169,7 @@ public class MainMenuController implements Initializable {
             SelectFavoriteDialogController controller = loader.getController();
 
             Stage dialogStage = new Stage();
-            dialogStage.setTitle("Select Favorite Raiders");
+            dialogStage.setTitle("SELECT FAVORITE RAIDERS");
             dialogStage.setResizable(false);
             dialogStage.getIcons().add(new Image(getClass().getResourceAsStream("/logo-images/inverted.png")));
             dialogStage.initModality(Modality.APPLICATION_MODAL);
@@ -181,6 +188,7 @@ public class MainMenuController implements Initializable {
 
     @FXML
     public void showEditPasswordDialog(ActionEvent event) throws IOException {
+        AudioManager.play("click");
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/pocketraiders/view/EditDialog.fxml"));
             Parent root = loader.load();
@@ -188,7 +196,7 @@ public class MainMenuController implements Initializable {
             EditDialogController controller = loader.getController();
 
             Stage dialogStage = new Stage();
-            dialogStage.setTitle("Change Password");
+            dialogStage.setTitle("CHANGE PASSWORD");
             dialogStage.setResizable(false);
             dialogStage.getIcons().add(new Image(getClass().getResourceAsStream("/logo-images/inverted.png")));
             dialogStage.initModality(Modality.APPLICATION_MODAL);

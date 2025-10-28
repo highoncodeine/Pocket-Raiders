@@ -55,6 +55,7 @@ public class ReleaseZoneController {
     }
 
     public void switchView(ActionEvent event) {
+        AudioManager.play("click");
         if (this.currentViewIndex < this.podViews.size() - 1) {
             this.currentViewIndex++;
         } else {
@@ -65,6 +66,7 @@ public class ReleaseZoneController {
     }
 
     public void switchToMainMenu(ActionEvent event) throws IOException {
+        AudioManager.play("click");
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/pocketraiders/view/MainMenu.fxml"));
         Parent root = loader.load();
         MainMenuController controller = loader.getController();
@@ -76,6 +78,7 @@ public class ReleaseZoneController {
     }
 
     public void switchToReleaseReveal(ActionEvent event) throws IOException {
+        AudioManager.play("click");
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/pocketraiders/view/ReleaseReveal.fxml"));
         Parent root = loader.load();
         ReleaseRevealController controller = loader.getController();

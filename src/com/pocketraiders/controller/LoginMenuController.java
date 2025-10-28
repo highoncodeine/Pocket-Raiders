@@ -1,5 +1,6 @@
 package com.pocketraiders.controller;
 
+import com.pocketraiders.model.AudioManager;
 import com.pocketraiders.model.JSONManager;
 import com.pocketraiders.model.Player;
 import javafx.event.ActionEvent;
@@ -36,6 +37,7 @@ public class LoginMenuController implements Initializable {
     private Button[] openBtns;
 
     public void setUp(Stage stage) {
+        AudioManager.playMainBgMusic();
         this.stage = stage;
         this.playerCount = 0;
         JSONManager saves = new JSONManager();
@@ -58,6 +60,7 @@ public class LoginMenuController implements Initializable {
     }
 
     public void registerPlayer(ActionEvent event) throws IOException {
+        AudioManager.play("click");
         String username = this.userNameTextField.getText();
         String password = this.passwordTextField.getText();
 
@@ -79,6 +82,7 @@ public class LoginMenuController implements Initializable {
 
     public void switchToMainMenu(Player player) {
         try {
+            AudioManager.play("click");
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/pocketraiders/view/MainMenu.fxml"));
             Parent root = loader.load();
             MainMenuController controller = loader.getController();
@@ -95,6 +99,7 @@ public class LoginMenuController implements Initializable {
 
     public void showPasswordDialog(Player player) {
         try {
+            AudioManager.play("click");
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/pocketraiders/view/PasswordDialog.fxml"));
             Parent root = loader.load();
 
@@ -102,7 +107,7 @@ public class LoginMenuController implements Initializable {
             controller.setUp(player, stage);
 
             Stage dialogStage = new Stage();
-            dialogStage.setTitle("Verification for " + player.getUsername());
+            dialogStage.setTitle("INPUT PASSWORD FOR " + player.getUsername());
             dialogStage.setResizable(false);
             dialogStage.getIcons().add(new Image(getClass().getResourceAsStream("/logo-images/inverted.png")));
             dialogStage.initModality(Modality.APPLICATION_MODAL);

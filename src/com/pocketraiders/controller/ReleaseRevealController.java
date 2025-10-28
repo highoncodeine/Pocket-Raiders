@@ -44,6 +44,7 @@ public class ReleaseRevealController {
 
     @FXML
     private void releaseRaider(ActionEvent event) throws IOException {
+        AudioManager.play("click");
         announcementMainLabel.setText("");
         announcementRarityLabel.setText("");
         Raider selectedRaider = player.drawRaider(podview.getPod());
@@ -86,6 +87,7 @@ public class ReleaseRevealController {
             playSpecialAnimation(spriteReveal, selectedRaider.getRarity());
         } else {
             spriteReveal.play();
+            AudioManager.play("common-reveal");
         }
 
     }
@@ -103,6 +105,7 @@ public class ReleaseRevealController {
     }
 
     private void playSpecialAnimation(ParallelTransition spriteReveal, Rarity rarity) {
+        AudioManager.play("rare-reveal");
         indicatorImg.setVisible(true);
         indicatorImg.setOpacity(0);
         spriteImg.setVisible(false);
@@ -138,6 +141,7 @@ public class ReleaseRevealController {
     }
 
     public void switchToReleaseZone(ActionEvent event) throws IOException {
+        AudioManager.play("click");
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/pocketraiders/view/ReleaseZone.fxml"));
         Parent root = loader.load();
         ReleaseZoneController controller = loader.getController();

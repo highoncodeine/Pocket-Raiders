@@ -1,5 +1,6 @@
 package com.pocketraiders.controller;
 
+import com.pocketraiders.model.AudioManager;
 import com.pocketraiders.model.Player;
 import com.pocketraiders.model.RaidBoss;
 import com.pocketraiders.model.Raider;
@@ -162,6 +163,8 @@ public class WinMenuController implements Initializable {
 
     @FXML
     public void switchToReleaseZone(ActionEvent event) throws IOException {
+        AudioManager.stopBackgroundMusic();
+        AudioManager.playMainBgMusic();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/pocketraiders/view/ReleaseZone.fxml"));
         Parent root = loader.load();
         ReleaseZoneController controller = loader.getController();
@@ -173,6 +176,8 @@ public class WinMenuController implements Initializable {
     }
 
     public void switchToSelectRaiders(ActionEvent event) throws IOException {
+        AudioManager.stopBackgroundMusic();
+        AudioManager.playMainBgMusic();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/pocketraiders/view/SelectRaiders.fxml"));
         Parent root = loader.load();
         SelectRaidersController controller = loader.getController();

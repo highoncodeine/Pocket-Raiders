@@ -1,5 +1,6 @@
 package com.pocketraiders.controller;
 
+import com.pocketraiders.model.AudioManager;
 import com.pocketraiders.model.JSONManager;
 import com.pocketraiders.model.Player;
 import javafx.application.Platform;
@@ -33,6 +34,7 @@ public class PasswordDialogController implements Initializable {
     }
 
     public void verify(ActionEvent event) throws IOException {
+        AudioManager.play("click");
         if(player.getPassword().equals(passwordTextField.getText())) {
             switchToMainMenu(this.player, event);
         } else {
@@ -42,6 +44,7 @@ public class PasswordDialogController implements Initializable {
 
 
     public void switchToMainMenu(Player player, ActionEvent event){
+        AudioManager.play("click");
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/pocketraiders/view/MainMenu.fxml"));
             Parent root = loader.load();
@@ -62,6 +65,7 @@ public class PasswordDialogController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        AudioManager.play("click");
         Platform.runLater(() -> {
             passwordTextField.getScene().setOnKeyPressed(event -> {
                 if (event.getCode() == KeyCode.ENTER) {

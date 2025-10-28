@@ -1,5 +1,6 @@
 package com.pocketraiders.controller;
 
+import com.pocketraiders.model.AudioManager;
 import com.pocketraiders.model.JSONManager;
 import com.pocketraiders.model.Player;
 import javafx.event.ActionEvent;
@@ -33,6 +34,7 @@ public class EditDialogController {
     }
 
     public void processChange(ActionEvent event) throws IOException {
+        AudioManager.play("click");
         if(areaTextField.getText().isBlank()) {
             warningLabel.setText("INPUT CANNOT BE EMPTY");
         } else {
