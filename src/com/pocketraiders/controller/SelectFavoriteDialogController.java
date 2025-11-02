@@ -1,5 +1,6 @@
 package com.pocketraiders.controller;
 
+import com.pocketraiders.model.AudioManager;
 import com.pocketraiders.model.Player;
 import com.pocketraiders.model.Raider;
 import javafx.animation.ScaleTransition;
@@ -161,6 +162,7 @@ public class SelectFavoriteDialogController implements Initializable {
     }
 
     private void clickAction(Raider raider) {
+        AudioManager.play("click");
         if(isAlreadySelected(raider)) {
             unselectRaider(raider);
         } else if(favoriteRaiders[0] != null && favoriteRaiders[1] != null && favoriteRaiders[2] != null) {

@@ -46,11 +46,6 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Label fx:id="playerInfoLabel" alignment="CENTER_RIGHT" layoutX="1147.0" layoutY="685.0" prefHeight="21.0" prefWidth="109.0" text="MADE BY HDEV" textFill="#fcfcfc">
-         <font>
-            <Font size="15.0" />
-         </font>
-      </Label>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#9e8e8e" height="34.0" layoutX="799.0" layoutY="143.0" opacity="0.4" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="284.0" />
       <Label fx:id="nameLabel" layoutX="801.0" layoutY="133.0" prefHeight="54.0" prefWidth="167.0" text="hdev" textAlignment="CENTER" textFill="WHITE">
          <font>

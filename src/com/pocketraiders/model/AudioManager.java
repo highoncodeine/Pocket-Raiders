@@ -83,7 +83,7 @@ public class AudioManager {
     public static void play(String name) {
         MediaPlayer audio = audios.get(name);
         if (audio != null) {
-            audio.stop(); // restart if already playing
+            audio.stop();
             if(name == "common-reveal") {
                 audio.setVolume(0.2);
                 audio.play();

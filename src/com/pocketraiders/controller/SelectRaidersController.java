@@ -288,7 +288,7 @@ public class SelectRaidersController implements Initializable {
         spritePaths.add("/raider-images/firewall.png");
         spritePaths.add("/raider-images/packet_tracer.png");
         spritePaths.add("/raider-images/staragazer.png");
-        spritePaths.add("/raider-images/staragazer.png");
+        spritePaths.add("/raider-images/scripython.png");
         spritePaths.add("/raider-images/seer.png");
         spritePaths.add("/raider-images/staragazer.png");
         spritePaths.add("/raider-images/staragazer.png");

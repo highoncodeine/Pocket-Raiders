@@ -15,6 +15,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -31,6 +32,7 @@ public class LoginMenuController implements Initializable {
     @FXML private Button  openBtn, openBtn1, openBtn2, registerBtn;
     @FXML private TextField userNameTextField;
     @FXML private PasswordField passwordTextField;
+    @FXML private ImageView easterEggCredits;
 
     private Label[] playerNameLabels;
     private Label[] playerInfoLabels;
@@ -42,6 +44,13 @@ public class LoginMenuController implements Initializable {
         this.playerCount = 0;
         JSONManager saves = new JSONManager();
         players = saves.loadAllPlayers();
+        easterEggCredits.setOnMouseClicked(mouseEvent -> {
+            try {
+                switchToCredits(new ActionEvent(mouseEvent.getSource(), null));
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        });
 
         for(int i = 0; i < 3; i++) {
             if(players[i] != null) {
@@ -120,6 +129,18 @@ public class LoginMenuController implements Initializable {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public void switchToCredits(ActionEvent event) throws IOException {
+        AudioManager.play("click");
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/pocketraiders/view/Credits.fxml"));
+        Parent root = loader.load();
+        CreditsController controller = loader.getController();
+        controller.setUp(stage);
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        stage.setScene(new Scene(root));
+        stage.centerOnScreen();
+        stage.show();
     }
 
     @Override

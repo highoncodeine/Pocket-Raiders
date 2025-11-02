@@ -128,12 +128,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Label alignment="CENTER_RIGHT" layoutX="979.0" layoutY="673.0" prefHeight="41.0" prefWidth="285.0" text="developed by h | sprites by h and p3" textAlignment="RIGHT" textFill="WHITE" wrapText="true">
-         <font>
-            <Font name="Segoe UI Semilight" size="18.0" />
-         </font>
-      </Label>
-      <ImageView fitHeight="227.0" fitWidth="265.0" layoutX="1014.0" layoutY="67.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="easterEggCredits" fitHeight="227.0" fitWidth="265.0" layoutX="1014.0" layoutY="67.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@/raider-images/staragazer.png" />
          </image>
