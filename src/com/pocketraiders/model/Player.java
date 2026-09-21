@@ -174,4 +174,6 @@ public class Player {
         this.currentRaidBossIndex++;
     }
 
+    public void setCurrentRaidBossIndex(int index) { this.currentRaidBossIndex = index; }
+
 }

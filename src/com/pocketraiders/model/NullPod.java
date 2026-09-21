@@ -18,10 +18,10 @@ public class NullPod extends Pod{
         nullRaiders.add(new CommonRaider(12, "Firewall", "Null", "/raider-images/firewall.png"));
         nullRaiders.add(new CommonRaider(13, "Packet Tracer", "Null", "/raider-images/packet_tracer.png"));
         nullRaiders.add(new RareRaider(14, "Scripython", "Null", "/raider-images/scripython.png"));
-        nullRaiders.add(new RareRaider(15, "Rabbit", "Null", "/raider-images/staragazer.png"));
+        nullRaiders.add(new RareRaider(15, "Rabbit", "Null", "/raider-images/rabbit.png"));
         nullRaiders.add(new RareRaider(16, "Seer", "Null", "/raider-images/seer.png"));
         nullRaiders.add(new LegendaryRaider(17, "Overclocke", "Null", "/raider-images/staragazer.png"));
-        nullRaiders.add(new LegendaryRaider(18, "Cipherstorm", "Null", "/raider-images/staragazer.png"));
+        nullRaiders.add(new LegendaryRaider(18, "Cipherstorm", "Null", "/raider-images/cipherstorm.png"));
         nullRaiders.add(new MythicalRaider(19, "WannaCry1", "Null", "/raider-images/staragazer.png"));
         nullRaiders.add(new MythicalRaider(20, "[REDACTED]", "Null", "/raider-images/staragazer.png"));
 

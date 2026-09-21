@@ -258,8 +258,11 @@ public class SelectRaidersController implements Initializable {
     }
 
     private void setUpRaidBoss(Player player) {
-        stageLevelLabel.setText("LEVEL: " + player.getLevel());
+        stageLevelLabel.setText("LEVEL: " + player.getCurrentRaidBossIndex());
         if(player.getCurrentRaidBoss() == null) {
+            if(player.getCurrentRaidBossIndex() >= 20) {
+                player.setCurrentRaidBossIndex(0);
+            }
             player.setCurrentRaidBoss(raidBosses.get(player.getCurrentRaidBossIndex()));
             player.getCurrentRaidBoss().setImage(spritePaths.get(player.getCurrentRaidBossIndex()));
             player.getCurrentRaidBoss().scale(this.player.getLevel());
@@ -287,11 +290,11 @@ public class SelectRaidersController implements Initializable {
         spritePaths.add("/raider-images/bytebug.png");
         spritePaths.add("/raider-images/firewall.png");
         spritePaths.add("/raider-images/packet_tracer.png");
-        spritePaths.add("/raider-images/staragazer.png");
         spritePaths.add("/raider-images/scripython.png");
+        spritePaths.add("/raider-images/rabbit.png");
         spritePaths.add("/raider-images/seer.png");
         spritePaths.add("/raider-images/staragazer.png");
-        spritePaths.add("/raider-images/staragazer.png");
+        spritePaths.add("/raider-images/cipherstorm.png");
         spritePaths.add("/raider-images/staragazer.png");
         spritePaths.add("/raider-images/staragazer.png");
 
